@@ -56,9 +56,9 @@ export default defineConfig({
         "my-alias": "some/folder/file.ts",
         "{{component}}": "components/{{component}}/index.{tsx,jsx}",
         "{{domain}}/{{usecase}}": {
-            search: "{{domain}}/**/usecases/{{usecase}}/{{usecase}}.usecase.ts",
-            exclude: ["**/*.spec.ts"]
-        }
+          search: "{{domain}}/**/usecases/{{usecase}}/{{usecase}}.usecase.ts",
+          exclude: ["**/*.spec.ts"],
+        },
         "{{domain}}/{{usecase}}/{{boundary}}": {
           search: "{{domain}}/**/boundaries/{{usecase}}/*.{{boundary}}.ts",
           prefix: "$",
