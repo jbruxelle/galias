@@ -1,4 +1,4 @@
-import { ConfigurationAdapter } from "../gateway/configuration.adapter";
+import { ConfigurationAdapter } from "../gateways/configuration.adapter";
 
 export class MissingConfigurationError extends Error {
   constructor(configurationAdapter: ConfigurationAdapter) {

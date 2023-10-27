@@ -2,7 +2,7 @@ import { readFile, writeFile } from "fs/promises";
 import {
   ConfigurationAdapter,
   ConfigurationAdapterOptions,
-} from "../../../../core/gateway/configuration.adapter";
+} from "../../../../core/gateways/configuration.adapter";
 
 export abstract class LanguageConfigurationAdapter
   implements ConfigurationAdapter

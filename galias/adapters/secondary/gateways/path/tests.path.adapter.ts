@@ -1,6 +1,6 @@
 import { sep, join, normalize } from "path";
 import { join as posixJoin } from "path/posix";
-import { PathAdapter } from "../../../../core/gateway/path.adapters";
+import { PathAdapter } from "../../../../core/gateways/path.adapters";
 
 export class TestsPathAdapter implements PathAdapter {
   join(...paths: string[]): string {

@@ -1,5 +1,5 @@
 import { glob } from "glob";
-import { GlobFSAdapter } from "../../../../core/gateway/glob-fs.adapters";
+import { GlobFSAdapter } from "../../../../core/gateways/glob-fs.adapters";
 
 export class IsaacsGlobFSAdapter implements GlobFSAdapter {
   async find(pattern: string, exlcude: string[] = []): Promise<string[]> {

@@ -4,7 +4,7 @@ import { Prefix } from "../../value-objects/prefix";
 import { Usecase } from "../../../shared/usecase";
 import { ComputeGaliasesInput } from "../../boundaries/compute-galiases/compute-galiases.input";
 import { ComputeGaliasesOutput } from "../../boundaries/compute-galiases/compute-galiases.output";
-import { PathAdapter } from "../../gateway/path.adapters";
+import { PathAdapter } from "../../gateways/path.adapters";
 import { ResolveGaliasPathService } from "../../services/resolve-galias-path/resolve-galias-path.service";
 
 export class ComputeGaliasesUsecase

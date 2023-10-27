@@ -1,7 +1,7 @@
 import { InvalidGaliasPathError } from "../../exceptions/invalid-galias-path.exception";
 import { GaliasPath } from "../../value-objects/galias-path";
-import { GlobFSAdapter } from "../../gateway/glob-fs.adapters";
-import { GlobMatchAdapter } from "../../gateway/glob-match.adapter";
+import { GlobFSAdapter } from "../../gateways/glob-fs.adapters";
+import { GlobMatchAdapter } from "../../gateways/glob-match.adapter";
 import { InferPathsVariablesService } from "../infer-paths-variables/infer-paths-variables.service";
 
 export type ResolvedGaliasPathMatch = {

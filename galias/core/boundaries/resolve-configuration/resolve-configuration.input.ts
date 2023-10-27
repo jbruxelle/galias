@@ -1,4 +1,4 @@
-import { ConfigurationAdapter } from "../../gateway/configuration.adapter";
+import { ConfigurationAdapter } from "../../gateways/configuration.adapter";
 
 export interface ResolveConfigurationInput {
   prefix: string;

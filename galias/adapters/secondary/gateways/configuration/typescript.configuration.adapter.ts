@@ -1,4 +1,4 @@
-import { ConfigurationAdapterOptions } from "../../../../core/gateway/configuration.adapter";
+import { ConfigurationAdapterOptions } from "../../../../core/gateways/configuration.adapter";
 import { LanguageConfigurationAdapter } from "./language.configuration.adapter";
 
 export class TSConfigAdapter extends LanguageConfigurationAdapter {

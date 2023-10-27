@@ -1,5 +1,5 @@
 import picomatch from "picomatch";
-import { GlobMatchAdapter } from "../../../../core/gateway/glob-match.adapter";
+import { GlobMatchAdapter } from "../../../../core/gateways/glob-match.adapter";
 
 const { makeRe, scan, isMatch } = picomatch;
 
