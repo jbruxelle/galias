@@ -132,7 +132,4 @@ dist
 # npm
 package-lock.json
 
-# pnpm
-pnpm-lock.yaml
-
 coverage
