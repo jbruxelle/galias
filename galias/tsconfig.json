@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext"],
+    "emitDeclarationOnly": true,
+    "strict": true,
+    "types": ["vitest/globals", "node"],
+    "isolatedModules": true,
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noUnusedLocals": true
+  },
+  "include": ["**/*.ts", "./src/**/*.d.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

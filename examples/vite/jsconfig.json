@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "paths": {
+      "$logotype": [
+        "./src/components/logotype/index.tsx"
+      ],
+      "$header": [
+        "./src/components/header/index.tsx"
+      ],
+      "$card": [
+        "./src/components/card/index.tsx"
+      ],
+      "$counter": [
+        "./src/components/counter/index.tsx"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

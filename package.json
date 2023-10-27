@@ -1,0 +1,19 @@
+{
+  "description": "Ralias (Resolve Alias) is an alias resolving library with adapters for Typescript, Javascript, Vite, Node...",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Julian BRUXELLE",
+    "email": "contact@julianbruxelle.fr",
+    "url": "https://github.com/jbruxelle"
+  },
+  "bugs": {
+    "url": "https://github.com/jbruxelle/ralias/issues"
+  },
+  "homepage": "https://github.com/jbruxelle/ralias#readme"
+}
