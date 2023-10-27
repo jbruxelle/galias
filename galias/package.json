@@ -25,8 +25,8 @@
   "scripts": {
     "build": "tsup-node && npm run build:copy-package",
     "build:copy-package": "cp package.json dist/package.json",
-    "dev": "vite",
-    "test": "vitest"
+    "test": "vitest",
+    "lint": "eslint --report-unused-disable-directives"
   },
   "files": [
     "dist"
@@ -65,6 +65,7 @@
   "devDependencies": {
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.1",
+    "eslint": "^8.45.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
