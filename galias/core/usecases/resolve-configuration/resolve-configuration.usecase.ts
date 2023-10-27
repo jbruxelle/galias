@@ -6,7 +6,7 @@ export class ResolveConfigurationUsecase
   implements Usecase<ResolveConfigurationInput, ResolveConfigurationOutput>
 {
   async execute(
-    input: ResolveConfigurationInput
+    input: ResolveConfigurationInput,
   ): Promise<ResolveConfigurationOutput> {
     const { galiases, adapters, prefix, exclude, rootDir } = input;
 

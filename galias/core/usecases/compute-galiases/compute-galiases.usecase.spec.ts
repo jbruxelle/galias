@@ -25,11 +25,11 @@ describe("USECASE: Compute galiases", () => {
     resolveGaliasPathService = new ResolveGaliasPathService(
       globMatchAdapter,
       globFSAdapter,
-      inferPathsVariablesService
+      inferPathsVariablesService,
     );
     computeGaliasesUsecase = new ComputeGaliasesUsecase(
       pathAdapter,
-      resolveGaliasPathService
+      resolveGaliasPathService,
     );
   });
 

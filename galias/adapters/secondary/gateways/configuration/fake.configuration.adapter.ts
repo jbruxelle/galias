@@ -31,10 +31,10 @@ export class FakeConfigurationAdapter implements ConfigurationAdapter {
   }
 
   async resolve(
-    which: "source" | "ouput" = "source"
+    which: "source" | "ouput" = "source",
   ): Promise<Record<string, any>> {
     const configurationBuffer = await readFile(
-      which === "source" ? this.source : this.output
+      which === "source" ? this.source : this.output,
     );
 
     const configurationString = configurationBuffer.toString();

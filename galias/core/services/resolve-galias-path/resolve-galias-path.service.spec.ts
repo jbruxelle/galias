@@ -25,14 +25,14 @@ describe("SERVICE: Resolve Galias path", () => {
     resolveGaliasPathService = new ResolveGaliasPathService(
       globMatchAdapter,
       globFSAdapter,
-      inferPathsVariablesService
+      inferPathsVariablesService,
     );
   });
 
   describe("resolve", () => {
     it("Should return an empty array if path is empty", async () => {
       const resolved = await resolveGaliasPathService.resolve(
-        new GaliasPath("")
+        new GaliasPath(""),
       );
       const expected: ResolvedGaliasPathMatch[] = [];
 
@@ -41,8 +41,8 @@ describe("SERVICE: Resolve Galias path", () => {
     it("Should resolve a basic path", async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/cart/core/application/usecases/create/create.ts"
-        )
+          "samples/resolve-galias-path/cart/core/application/usecases/create/create.ts",
+        ),
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
@@ -55,7 +55,7 @@ describe("SERVICE: Resolve Galias path", () => {
       expect.assertions(1);
       try {
         await resolveGaliasPathService.resolve(
-          new GaliasPath("samples/resolve-galias-path/**/*.adapter.{ts,js}")
+          new GaliasPath("samples/resolve-galias-path/**/*.adapter.{ts,js}"),
         );
       } catch (error) {
         expect(error).toBeInstanceOf(InvalidGaliasPathError);
@@ -64,9 +64,9 @@ describe("SERVICE: Resolve Galias path", () => {
     it("Should resolve a glob path with variables and respect exclude option", async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts"
+          "samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts",
         ),
-        ["**/*.spec.*"]
+        ["**/*.spec.*"],
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
@@ -104,9 +104,9 @@ describe("SERVICE: Resolve Galias path", () => {
     it("Should infer a variable if several paths match with same variables", async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}"
+          "samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}",
         ),
-        ["**/*.spec.*"]
+        ["**/*.spec.*"],
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {

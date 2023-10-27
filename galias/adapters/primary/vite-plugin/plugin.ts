@@ -32,14 +32,14 @@ export default (options: VitePluginGaliasOptions): Plugin => {
   const resolveGaliasPathService = new ResolveGaliasPathService(
     globMatchAdapter,
     globFSAdapter,
-    inferPathsVariablesService
+    inferPathsVariablesService,
   );
 
   const resolveConfigurationUsecase = new ResolveConfigurationUsecase();
 
   const computeGaliasesUsecase = new ComputeGaliasesUsecase(
     pathAdapter,
-    resolveGaliasPathService
+    resolveGaliasPathService,
   );
 
   const consumeGaliasesUsecase = new ConsumeGaliasesUsecase();
@@ -75,9 +75,8 @@ export default (options: VitePluginGaliasOptions): Plugin => {
         ...options,
       };
 
-      const resolvedConfiguration = await resolveConfigurationUsecase.execute(
-        mergedOptions
-      );
+      const resolvedConfiguration =
+        await resolveConfigurationUsecase.execute(mergedOptions);
 
       const galiasesOptions = Object.values(resolvedConfiguration.galiases);
 
@@ -127,7 +126,7 @@ export default (options: VitePluginGaliasOptions): Plugin => {
         message(`Galias "${id}" not found!`, "error");
         message(
           "Please check your Galias configuration (rootDir, relative paths, ...).",
-          "warning"
+          "warning",
         );
         return;
       }

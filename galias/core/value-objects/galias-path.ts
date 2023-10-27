@@ -98,26 +98,26 @@ export class GaliasPath {
           return `(?<${variable}>[^\\/.][\\w-]+)`;
         }
         return `\\k<${variable}>`;
-      }
+      },
     );
   }
 
   private _validate(): void {
     if (this._value.includes("//")) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain double slashes"
+        "Galias path cannot contain double slashes",
       );
     }
 
     if (this._value.includes("\\\\")) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain double backslashes"
+        "Galias path cannot contain double backslashes",
       );
     }
 
     if (this.value.includes("!")) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain negation, use exclude instead"
+        "Galias path cannot contain negation, use exclude instead",
       );
     }
   }

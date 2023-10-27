@@ -61,7 +61,7 @@ export class Galias {
 
   private _assembleInferedVariables(
     variable: string,
-    variables: Record<string, string>
+    variables: Record<string, string>,
   ): string {
     let assembledVariables: string = variables[variable];
 

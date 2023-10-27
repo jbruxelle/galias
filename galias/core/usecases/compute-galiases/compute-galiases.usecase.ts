@@ -12,7 +12,7 @@ export class ComputeGaliasesUsecase
 {
   constructor(
     private readonly _pathAdapter: PathAdapter,
-    private readonly _resolveGaliasPathService: ResolveGaliasPathService
+    private readonly _resolveGaliasPathService: ResolveGaliasPathService,
   ) {}
 
   async execute(input: ComputeGaliasesInput): Promise<ComputeGaliasesOutput> {
@@ -33,7 +33,7 @@ export class ComputeGaliasesUsecase
 
       const resolvedGaliasPath = await this._resolveGaliasPathService.resolve(
         galiasPath,
-        exclude
+        exclude,
       );
 
       for (const resolvedGaliasPathMatch of resolvedGaliasPath) {

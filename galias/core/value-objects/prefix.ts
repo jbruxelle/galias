@@ -4,7 +4,7 @@ export class Prefix {
   private static readonly ALLOWED_CHARACTERS = ["#", "$", "@"];
 
   constructor(
-    private readonly _value: (typeof Prefix.ALLOWED_CHARACTERS)[number]
+    private readonly _value: (typeof Prefix.ALLOWED_CHARACTERS)[number],
   ) {
     this._validate();
   }

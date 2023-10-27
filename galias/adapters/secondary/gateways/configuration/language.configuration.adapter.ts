@@ -10,7 +10,7 @@ export abstract class LanguageConfigurationAdapter
   constructor(
     private readonly _name: string,
     private readonly _configFileName: string,
-    private readonly _options?: ConfigurationAdapterOptions
+    private readonly _options?: ConfigurationAdapterOptions,
   ) {}
 
   get name(): string {
@@ -57,14 +57,14 @@ export abstract class LanguageConfigurationAdapter
     const updatedConfigurationString = JSON.stringify(
       updatedConfiguration,
       null,
-      2
+      2,
     );
 
     await writeFile(this.output, updatedConfigurationString);
   }
 
   private _formatComputedPaths(
-    computedPaths: Record<string, string>
+    computedPaths: Record<string, string>,
   ): Record<string, string[]> {
     const entries = Object.entries(computedPaths);
     const transformedEntries = entries.map(([key, value]) => [key, [value]]);
@@ -74,7 +74,7 @@ export abstract class LanguageConfigurationAdapter
   private _ignoreComments(content: string): string {
     return content.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
-      (match, g) => (g ? "" : match)
+      (match, g) => (g ? "" : match),
     );
   }
 }
