@@ -5,7 +5,6 @@
     "target": "ESNext",
     "moduleResolution": "Node",
     "lib": ["ESNext"],
-    "emitDeclarationOnly": true,
     "strict": true,
     "types": ["vitest/globals", "node"],
     "isolatedModules": true,

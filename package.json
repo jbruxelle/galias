@@ -11,6 +11,10 @@
     "vite",
     "node"
   ],
+  "scripts": {
+    "lint": "pnpm run -r lint",
+    "lint:fix": "pnpm run -r lint:fix"
+  },
   "author": {
     "name": "Julian BRUXELLE",
     "email": "contact@julianbruxelle.fr",
