@@ -1,6 +1,7 @@
-import { ConfigurationAdapter } from "../../../core/gateway/configuration.adapter";
+import { ConfigurationAdapter } from "../../../core/gateways/configuration.adapter";
+import { Prettify } from "../../../shared/prettify";
 
-export interface VitePluginGaliasOptions {
+interface _VitePluginGaliasOptions {
   prefix?: string;
   exclude?: string[];
   rootDir?: string;
@@ -17,3 +18,5 @@ export interface VitePluginGaliasOptions {
   adapters?: ConfigurationAdapter[];
   logs?: boolean;
 }
+
+export type VitePluginGaliasOptions = Prettify<_VitePluginGaliasOptions>;
