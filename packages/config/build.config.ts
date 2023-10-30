@@ -16,5 +16,14 @@ export default defineBuildConfig([
     declaration: false,
     entries: [{ input: './.prettierrc.cjs' }],
     externals: ['prettier'],
+    failOnWarn: false,
+  },
+  {
+    preset: buildConfigPreset,
+    name: '@galias/config/eslint',
+    outDir: './dist/eslint',
+    declaration: false,
+    entries: [{ input: './.eslintrc.cjs' }],
+    externals: ['prettier'],
   },
 ]);

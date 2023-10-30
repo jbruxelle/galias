@@ -14,8 +14,7 @@
   },
   "files": [
     "dist",
-    "tsconfig.base.json",
-    ".eslintrc"
+    "tsconfig.base.json"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -26,7 +25,10 @@
       "import": "./dist/prettier/.prettierrc.mjs",
       "require": "./dist/prettier/.prettierrc.cjs"
     },
-    "./eslint": "./.eslintrc",
+    "./eslint": {
+      "import": "./dist/eslint/.eslintrc.mjs",
+      "require": "./dist/eslint/.eslintrc.cjs"
+    },
     ".": {
       "types": "./dist/index.d.ts",
       "import": {
@@ -39,7 +41,16 @@
       }
     }
   },
-  "devDependencies": {
-    "eslint-config-unjs": "^0.2.1"
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unicorn": "^47.0.0"
   }
 }
