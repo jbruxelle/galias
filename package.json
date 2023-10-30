@@ -24,7 +24,7 @@
     "vitest": "^0.34.6"
   },
   "lint-staged": {
-    "*": "prettier --write",
+    "*": "prettier --ignore-unknown --write",
     "*.{ts,js}": "eslint --fix"
   }
 }
