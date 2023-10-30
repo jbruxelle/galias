@@ -1,4 +1,5 @@
-name: fix.ci
+# For security reasons, the workflow in which the autofix.ci action is used must be named "autofix.ci".
+name: autofix.ci
 on:
   pull_request:
   push:
