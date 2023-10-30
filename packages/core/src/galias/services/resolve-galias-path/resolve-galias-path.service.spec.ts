@@ -1,4 +1,3 @@
- 
 import { IsaacsGlobFSAdapter } from '../../../adapters/glob-fs/isaacs.glob-fs.adapters';
 import { PicomatchGlobMatchAdapter } from '../../../adapters/glob-match/picomatch.glob-match.adapter';
 import { InvalidGaliasPathError } from '../../exceptions/invalid-galias-path.exception';
@@ -201,8 +200,8 @@ describe('SERVICE: Resolve Galias path', () => {
 
 const expectArray = (actual: any[]) => ({
   toEqual: (expected: any[]) => {
-      for (const entry of actual) {
-          expect(expected).toContainEqual(entry);
-      }
-  }
-})
+    for (const entry of actual) {
+      expect(expected).toContainEqual(entry);
+    }
+  },
+});

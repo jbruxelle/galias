@@ -1,4 +1,4 @@
- import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
+import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
 import { ResolveConfigurationInput } from '../../boundaries/resolve-configuration/resolve-configuration.input';
 import { defaultPluginOptions } from '../../plugin/plugin.options.defaults';
 import { ResolveConfigurationUsecase } from './resolve-configuration.usecase';
@@ -7,8 +7,6 @@ describe('USECASE: Resolve configuration', () => {
   let usecase: ResolveConfigurationUsecase;
   let fakeConfigurationAdapter: FakeConfigurationAdapter;
   let defaultOptions: ResolveConfigurationInput;
-
-   
 
   beforeEach(() => {
     usecase = new ResolveConfigurationUsecase();

@@ -1,7 +1,7 @@
 import { sep, join, normalize } from 'path';
 import { join as posixJoin } from 'path/posix';
 import { PathAdapter } from '../../galias/gateways/path.adapters';
- 
+
 export class TestsPathAdapter implements PathAdapter {
   join(...paths: string[]): string {
     return normalize(join(...paths));

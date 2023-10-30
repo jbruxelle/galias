@@ -1,4 +1,4 @@
- import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
+import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
 import { ConsumeGaliasesUsecase } from './consume-galiases.usecase';
 
 describe('USECASE: Consume galiases', () => {
