@@ -1,4 +1,6 @@
 import { Counter } from "$counter";
+import { Footer } from "$footer";
+import { Header } from "$header";
 import { Logotype } from "$logotype";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
@@ -8,6 +10,7 @@ function App() {
   return (
     <>
       <div>
+        <Header />
         <Logotype
           link="https://vitejs.dev"
           image={{ src: viteLogo, alt: "Vite logo" }}
@@ -27,6 +30,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Footer />
     </>
   );
 }

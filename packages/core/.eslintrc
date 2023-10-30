@@ -1,0 +1,3 @@
+{
+  "extends": ["@galias/config/eslint"]
+}

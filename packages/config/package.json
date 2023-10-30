@@ -1,0 +1,44 @@
+{
+  "name": "@galias/config",
+  "version": "0.0.1",
+  "description": "Configurations for Galias",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild",
+    "release": "changelogen --release && npm publish && git push --follow-tags",
+    "prepack": "pnpm run build",
+    "lint": "eslint --cache && prettier -c .",
+    "lint:fix": "eslint --cache && prettier -c . -w",
+    "test": "pnpm lint && pnpm test:types && pnpm test:unit",
+    "test:unit": "vitest run --coverage",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "files": [
+    "dist",
+    "tsconfig.base.json",
+    ".eslintrc",
+    ".prettierrc"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./typescript": "./tsconfig.base.json",
+    "./prettier": "./.prettierrc",
+    "./eslint": "./.eslintrc",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": {
+        "default": "./dist/index.mjs",
+        "types": "./dist/index.d.mts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.cts"
+      }
+    }
+  },
+  "devDependencies": {
+    "eslint-config-unjs": "^0.2.1"
+  }
+}

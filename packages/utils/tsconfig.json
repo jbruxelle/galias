@@ -1,0 +1,4 @@
+{
+  "extends": "@galias/config/typescript",
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
+}

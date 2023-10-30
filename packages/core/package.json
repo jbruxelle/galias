@@ -1,0 +1,68 @@
+{
+  "name": "@galias/core",
+  "version": "0.0.1",
+  "description": "Galias (Glob alias) is an alias resolving library with adapters for Typescript, Javascript, Vite (and other bundlers), Node...",
+  "keywords": [
+    "alias",
+    "resolve",
+    "glob",
+    "typescript",
+    "javascript",
+    "vite",
+    "node"
+  ],
+  "author": {
+    "name": "Julian BRUXELLE",
+    "email": "contact@julianbruxelle.fr",
+    "url": "https://github.com/jbruxelle"
+  },
+  "bugs": {
+    "url": "https://github.com/jbruxelle/galias/issues"
+  },
+  "homepage": "https://github.com/jbruxelle/galias#readme",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild",
+    "release": "changelogen --release && npm publish && git push --follow-tags",
+    "prepack": "pnpm run build",
+    "lint": "eslint --cache && prettier -c .",
+    "lint:fix": "eslint --cache && prettier -c . -w",
+    "test": "pnpm lint && pnpm test:types && pnpm test:unit",
+    "test:unit": "vitest run --coverage",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": {
+        "default": "./dist/index.mjs",
+        "types": "./dist/index.d.mts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.cts"
+      }
+    }
+  },
+  "dependencies": {
+    "glob": "^10.3.10",
+    "picomatch": "^2.3.1"
+  },
+  "devDependencies": {
+    "@galias/config": "workspace:*",
+    "@galias/utils": "workspace:*",
+    "@types/node": "^20.8.0",
+    "@types/picomatch": "^2.3.1",
+    "vite": "^4.4.9"
+  },
+  "packageManager": "pnpm@8.7.1",
+  "prettier": "@galias/config/prettier"
+}

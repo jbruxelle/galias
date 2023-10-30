@@ -9,11 +9,14 @@
       "$header": [
         "./src/components/header/index.tsx"
       ],
-      "$card": [
-        "./src/components/card/index.tsx"
+      "$footer": [
+        "./src/components/footer/index.tsx"
       ],
       "$counter": [
         "./src/components/counter/index.tsx"
+      ],
+      "$card": [
+        "./src/components/card/index.tsx"
       ]
     }
   },

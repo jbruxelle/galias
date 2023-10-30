@@ -1,27 +1,23 @@
 {
-  "description": "Galias (Glob alias) is an alias resolving library with adapters for Typescript, Javascript, Vite (and other bundlers), Node...",
+  "name": "galias",
+  "version": "0.0.1",
   "license": "MIT",
-  "private": true,
-  "keywords": [
-    "alias",
-    "resolve",
-    "glob",
-    "typescript",
-    "javascript",
-    "vite",
-    "node"
-  ],
   "scripts": {
-    "lint": "pnpm run -r lint",
-    "lint:fix": "pnpm run -r lint:fix"
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix"
   },
-  "author": {
-    "name": "Julian BRUXELLE",
-    "email": "contact@julianbruxelle.fr",
-    "url": "https://github.com/jbruxelle"
-  },
-  "bugs": {
-    "url": "https://github.com/jbruxelle/galias/issues"
-  },
-  "homepage": "https://github.com/jbruxelle/galias#readme"
+  "private": true,
+  "devDependencies": {
+    "@vitest/coverage-v8": "^0.34.6",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
+    "turbo": "^1.10.16",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "vitest": "^0.34.6"
+  }
 }
