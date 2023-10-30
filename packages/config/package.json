@@ -15,15 +15,17 @@
   "files": [
     "dist",
     "tsconfig.base.json",
-    ".eslintrc",
-    ".prettierrc"
+    ".eslintrc"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     "./typescript": "./tsconfig.base.json",
-    "./prettier": "./.prettierrc",
+    "./prettier": {
+      "import": "./dist/prettier/.prettierrc.mjs",
+      "require": "./dist/prettier/.prettierrc.cjs"
+    },
     "./eslint": "./.eslintrc",
     ".": {
       "types": "./dist/index.d.ts",
@@ -39,6 +41,5 @@
   },
   "devDependencies": {
     "eslint-config-unjs": "^0.2.1"
-  },
-  "prettier": "./.prettierrc"
+  }
 }

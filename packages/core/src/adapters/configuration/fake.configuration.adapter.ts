@@ -1,15 +1,15 @@
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile } from 'fs/promises';
 import {
   LanguageConfigurationAdapter,
   LanguageConfigurationAdapterOptions,
-} from "../../galias/gateways/language-configuration.adapter";
+} from '../../galias/gateways/language-configuration.adapter';
 
 export class FakeConfigurationAdapter implements LanguageConfigurationAdapter {
-  private readonly _name: string = "fake";
-  private readonly _configFileName: string = "fakeconfig.json";
+  private readonly _name: string = 'fake';
+  private readonly _configFileName: string = 'fakeconfig.json';
 
   constructor(
-    private readonly _options?: LanguageConfigurationAdapterOptions,
+    private readonly _options?: LanguageConfigurationAdapterOptions
   ) {}
 
   get name(): string {
@@ -33,10 +33,10 @@ export class FakeConfigurationAdapter implements LanguageConfigurationAdapter {
   }
 
   async resolve(
-    which: "source" | "ouput" = "source",
+    which: 'source' | 'ouput' = 'source'
   ): Promise<Record<string, any>> {
     const configurationBuffer = await readFile(
-      which === "source" ? this.source : this.output,
+      which === 'source' ? this.source : this.output
     );
 
     const configurationString = configurationBuffer.toString();
@@ -47,7 +47,7 @@ export class FakeConfigurationAdapter implements LanguageConfigurationAdapter {
 
   async consume(computedPaths: Record<string, string>): Promise<void> {
     const configuration = await this.resolve();
-    const paths = configuration["paths"];
+    const paths = configuration['paths'];
 
     const updatedConfiguration = {
       ...configuration,

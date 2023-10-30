@@ -1,6 +1,6 @@
-import { Prettify } from "@galias/utils";
-import { LanguageOption } from "./plugin.options.language";
-import { GaliasOption } from "./plugin.options.galias";
+import { Prettify } from '@galias/utils';
+import { LanguageOption } from './plugin.options.language';
+import { GaliasOption } from './plugin.options.galias';
 
 interface _GaliasPluginOptions {
   prefix?: string;

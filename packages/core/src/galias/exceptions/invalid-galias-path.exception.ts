@@ -1,6 +1,6 @@
 export class InvalidGaliasPathError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "InvalidGaliasPathError";
+    this.name = 'InvalidGaliasPathError';
   }
 }

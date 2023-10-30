@@ -1,8 +1,8 @@
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile } from 'fs/promises';
 import {
   LanguageConfigurationAdapter,
   LanguageConfigurationAdapterOptions,
-} from "../../galias/gateways/language-configuration.adapter";
+} from '../../galias/gateways/language-configuration.adapter';
 
 export abstract class BaseLanguageConfigurationAdapter
   implements LanguageConfigurationAdapter
@@ -10,7 +10,7 @@ export abstract class BaseLanguageConfigurationAdapter
   constructor(
     private readonly _name: string,
     private readonly _configFileName: string,
-    private readonly _options?: LanguageConfigurationAdapterOptions,
+    private readonly _options?: LanguageConfigurationAdapterOptions
   ) {}
 
   get name(): string {
@@ -42,8 +42,8 @@ export abstract class BaseLanguageConfigurationAdapter
   async consume(computedPaths: Record<string, string>): Promise<void> {
     const configuration = await this.resolve();
 
-    const compilerOptions = configuration["compilerOptions"];
-    const paths = compilerOptions["paths"];
+    const compilerOptions = configuration['compilerOptions'];
+    const paths = compilerOptions['paths'];
     const transformedComputedPaths = this._formatComputedPaths(computedPaths);
 
     const updatedConfiguration = {
@@ -57,14 +57,14 @@ export abstract class BaseLanguageConfigurationAdapter
     const updatedConfigurationString = JSON.stringify(
       updatedConfiguration,
       null,
-      2,
+      2
     );
 
     await writeFile(this.output, updatedConfigurationString);
   }
 
   private _formatComputedPaths(
-    computedPaths: Record<string, string>,
+    computedPaths: Record<string, string>
   ): Record<string, string[]> {
     const entries = Object.entries(computedPaths);
     const transformedEntries = entries.map(([key, value]) => [key, [value]]);
@@ -74,7 +74,7 @@ export abstract class BaseLanguageConfigurationAdapter
   private _ignoreComments(content: string): string {
     return content.replace(
       /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
-      (match, g) => (g ? "" : match),
+      (match, g) => (g ? '' : match)
     );
   }
 }

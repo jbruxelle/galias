@@ -1,4 +1,4 @@
-import { Prettify } from "@galias/utils";
+import { Prettify } from '@galias/utils';
 
 interface _LanguageOption {
   source: string;

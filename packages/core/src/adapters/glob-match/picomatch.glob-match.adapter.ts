@@ -1,5 +1,5 @@
-import picomatch from "picomatch";
-import { GlobMatchAdapter } from "../../galias/gateways/glob-match.adapter";
+import picomatch from 'picomatch';
+import { GlobMatchAdapter } from '../../galias/gateways/glob-match.adapter';
 
 const { makeRe, scan, isMatch } = picomatch;
 

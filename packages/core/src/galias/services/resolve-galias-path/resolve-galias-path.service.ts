@@ -1,8 +1,8 @@
-import { InvalidGaliasPathError } from "../../exceptions/invalid-galias-path.exception";
-import { GaliasPath } from "../../value-objects/galias-path";
-import { GlobFSAdapter } from "../../gateways/glob-fs.adapters";
-import { GlobMatchAdapter } from "../../gateways/glob-match.adapter";
-import { InferPathsVariablesService } from "../infer-paths-variables/infer-paths-variables.service";
+import { InvalidGaliasPathError } from '../../exceptions/invalid-galias-path.exception';
+import { GaliasPath } from '../../value-objects/galias-path';
+import { GlobFSAdapter } from '../../gateways/glob-fs.adapters';
+import { GlobMatchAdapter } from '../../gateways/glob-match.adapter';
+import { InferPathsVariablesService } from '../infer-paths-variables/infer-paths-variables.service';
 
 export type ResolvedGaliasPathMatch = {
   path: string;
@@ -18,7 +18,7 @@ export class ResolveGaliasPathService {
   constructor(
     private readonly _globMatchAdapter: GlobMatchAdapter,
     private readonly _globFSAdapter: GlobFSAdapter,
-    private readonly _inferPathsVariablesService: InferPathsVariablesService,
+    private readonly _inferPathsVariablesService: InferPathsVariablesService
   ) {}
 
   /**
@@ -40,7 +40,7 @@ export class ResolveGaliasPathService {
    */
   async resolve(
     galiasPath: GaliasPath,
-    exclude: string[] = [],
+    exclude: string[] = []
   ): Promise<ResolvedGaliasPathMatch[]> {
     if (!galiasPath.value) {
       return [];
@@ -55,17 +55,17 @@ export class ResolveGaliasPathService {
 
     if (isGlob && !hasVariables) {
       const errorMessage = [
-        "Glob path without variables cannot be resolved to a single path.",
-        "Make sure to use variables or not to use glob. ",
-        "Path: ${galiasPath.value",
-      ].join("\n");
+        'Glob path without variables cannot be resolved to a single path.',
+        'Make sure to use variables or not to use glob. ',
+        'Path: ${galiasPath.value',
+      ].join('\n');
 
       throw new InvalidGaliasPathError(errorMessage);
     }
 
     const matches = await this._globFSAdapter.find(galiasPath.glob, exclude);
     const regexp = this._globMatchAdapter.toRegexp(
-      galiasPath.regexpVariablesPath,
+      galiasPath.regexpVariablesPath
     );
 
     const resolvedPathMatches: ResolvedGaliasPathMatch[] = [];
@@ -89,7 +89,7 @@ export class ResolveGaliasPathService {
   }
 
   private _findResolvedPathConflicts(
-    matches: ResolvedGaliasPathMatch[],
+    matches: ResolvedGaliasPathMatch[]
   ): ResolvedGaliasPathConflict[] {
     const serializedVariablesSets = matches.map((match) => {
       return JSON.stringify(match.variables);
@@ -115,7 +115,7 @@ export class ResolveGaliasPathService {
   }
 
   private _settleResolvedPathsConflicts(
-    conflicts: ResolvedGaliasPathConflict[],
+    conflicts: ResolvedGaliasPathConflict[]
   ) {
     const settled: ResolvedGaliasPathMatch[] = [];
 
@@ -129,7 +129,7 @@ export class ResolveGaliasPathService {
 
       const pathsWithInferedVariables = this._inferPathsVariablesService.infer(
         paths,
-        variables,
+        variables
       );
 
       const settledPaths = pathsWithInferedVariables.map(
@@ -139,7 +139,7 @@ export class ResolveGaliasPathService {
             ...inferedVariables,
           };
           return { path, variables: settledVariables };
-        },
+        }
       );
 
       settled.push(...settledPaths);

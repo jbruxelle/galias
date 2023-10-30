@@ -1,5 +1,5 @@
-import { CONSTANTS } from "../../constants";
-import { InvalidGaliasPathError } from "../exceptions/invalid-galias-path.exception";
+import { CONSTANTS } from '../../constants';
+import { InvalidGaliasPathError } from '../exceptions/invalid-galias-path.exception';
 
 /**
  * GaliasPath is a value object that represents a galias (Glob alias) path string.
@@ -84,7 +84,7 @@ export class GaliasPath {
   }
 
   private _toGlobPattern(): string {
-    return this._value.replace(CONSTANTS.GALIAS_VARIABLE_REGEXP, "*");
+    return this._value.replace(CONSTANTS.GALIAS_VARIABLE_REGEXP, '*');
   }
 
   private _variablesToRegexp(): string {
@@ -98,26 +98,26 @@ export class GaliasPath {
           return `(?<${variable}>[^\\/.][\\w-]+)`;
         }
         return `\\k<${variable}>`;
-      },
+      }
     );
   }
 
   private _validate(): void {
-    if (this._value.includes("//")) {
+    if (this._value.includes('//')) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain double slashes",
+        'Galias path cannot contain double slashes'
       );
     }
 
-    if (this._value.includes("\\\\")) {
+    if (this._value.includes('\\\\')) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain double backslashes",
+        'Galias path cannot contain double backslashes'
       );
     }
 
-    if (this.value.includes("!")) {
+    if (this.value.includes('!')) {
       throw new InvalidGaliasPathError(
-        "Galias path cannot contain negation, use exclude instead",
+        'Galias path cannot contain negation, use exclude instead'
       );
     }
   }

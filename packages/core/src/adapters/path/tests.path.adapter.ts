@@ -1,6 +1,6 @@
-import { sep, join, normalize } from "path";
-import { join as posixJoin } from "path/posix";
-import { PathAdapter } from "../../../../core/gateways/path.adapters";
+import { sep, join, normalize } from 'path';
+import { join as posixJoin } from 'path/posix';
+import { PathAdapter } from '../../../../core/gateways/path.adapters';
 
 export class TestsPathAdapter implements PathAdapter {
   join(...paths: string[]): string {
@@ -12,8 +12,8 @@ export class TestsPathAdapter implements PathAdapter {
   }
 
   toPosixPath(path: string): string {
-    if (sep === "/") return path;
-    return path.replace(/\\/g, "/");
+    if (sep === '/') return path;
+    return path.replace(/\\/g, '/');
   }
 
   get separator(): string {

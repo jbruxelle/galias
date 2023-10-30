@@ -1,18 +1,18 @@
-import { Galias } from "../../value-objects/galias";
-import { GaliasPath } from "../../value-objects/galias-path";
-import { Prefix } from "../../value-objects/prefix";
-import { ComputeGaliasesInput } from "../../boundaries/compute-galiases/compute-galiases.input";
-import { ComputeGaliasesOutput } from "../../boundaries/compute-galiases/compute-galiases.output";
-import { PathAdapter } from "../../gateways/path.adapters";
-import { ResolveGaliasPathService } from "../../services/resolve-galias-path/resolve-galias-path.service";
-import { Usecase } from "../../../types/usecase";
+import { Galias } from '../../value-objects/galias';
+import { GaliasPath } from '../../value-objects/galias-path';
+import { Prefix } from '../../value-objects/prefix';
+import { ComputeGaliasesInput } from '../../boundaries/compute-galiases/compute-galiases.input';
+import { ComputeGaliasesOutput } from '../../boundaries/compute-galiases/compute-galiases.output';
+import { PathAdapter } from '../../gateways/path.adapters';
+import { ResolveGaliasPathService } from '../../services/resolve-galias-path/resolve-galias-path.service';
+import { Usecase } from '../../../types/usecase';
 
 export class ComputeGaliasesUsecase
   implements Usecase<ComputeGaliasesInput, ComputeGaliasesOutput>
 {
   constructor(
     private readonly _pathAdapter: PathAdapter,
-    private readonly _resolveGaliasPathService: ResolveGaliasPathService,
+    private readonly _resolveGaliasPathService: ResolveGaliasPathService
   ) {}
 
   async execute(input: ComputeGaliasesInput): Promise<ComputeGaliasesOutput> {
@@ -33,7 +33,7 @@ export class ComputeGaliasesUsecase
 
       const resolvedGaliasPath = await this._resolveGaliasPathService.resolve(
         galiasPath,
-        exclude,
+        exclude
       );
 
       for (const resolvedGaliasPathMatch of resolvedGaliasPath) {

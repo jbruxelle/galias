@@ -1,15 +1,15 @@
-import { JSConfigAdapter, TSConfigAdapter } from "../../..";
-import { Usecase } from "../../../types/usecase";
-import { ResolveConfigurationInput } from "../../boundaries/resolve-configuration/resolve-configuration.input";
-import { ResolveConfigurationOutput } from "../../boundaries/resolve-configuration/resolve-configuration.output";
-import { LanguageConfigurationAdapter } from "../../gateways/language-configuration.adapter";
-import { LanguageOption } from "../../plugin/plugin.options.language";
+import { JSConfigAdapter, TSConfigAdapter } from '../../..';
+import { Usecase } from '../../../types/usecase';
+import { ResolveConfigurationInput } from '../../boundaries/resolve-configuration/resolve-configuration.input';
+import { ResolveConfigurationOutput } from '../../boundaries/resolve-configuration/resolve-configuration.output';
+import { LanguageConfigurationAdapter } from '../../gateways/language-configuration.adapter';
+import { LanguageOption } from '../../plugin/plugin.options.language';
 
 export class ResolveConfigurationUsecase
   implements Usecase<ResolveConfigurationInput, ResolveConfigurationOutput>
 {
   async execute(
-    input: ResolveConfigurationInput,
+    input: ResolveConfigurationInput
   ): Promise<ResolveConfigurationOutput> {
     const { galiases, prefix, exclude, rootDir, tsconfig, jsconfig } = input;
 
@@ -24,7 +24,7 @@ export class ResolveConfigurationUsecase
     const galiasEntries = Object.entries(galiases);
 
     for (const [galias, galiasValue] of galiasEntries) {
-      if (typeof galiasValue === "string") {
+      if (typeof galiasValue === 'string') {
         resolvedConfiguration.galiases[galias] = {
           search: galiasValue,
           prefix,
@@ -33,7 +33,7 @@ export class ResolveConfigurationUsecase
         };
       }
 
-      if (typeof galiasValue === "object") {
+      if (typeof galiasValue === 'object') {
         resolvedConfiguration.galiases[galias] = {
           search: galiasValue.search,
           prefix: galiasValue.prefix ?? prefix,
@@ -48,7 +48,7 @@ export class ResolveConfigurationUsecase
 
   private _inferLanguageConfigurationAdapters(
     tsconfig?: boolean | LanguageOption,
-    jsconfig?: boolean | LanguageOption,
+    jsconfig?: boolean | LanguageOption
   ): LanguageConfigurationAdapter[] {
     const adapters: LanguageConfigurationAdapter[] = [];
 

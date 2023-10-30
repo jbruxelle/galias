@@ -1,4 +1,4 @@
-import { Galias } from "../../value-objects/galias";
+import { Galias } from '../../value-objects/galias';
 
 interface PathWithInferedVariables {
   path: string;
@@ -69,12 +69,12 @@ export class InferPathsVariablesService {
             }
 
             _path = postVariableSection;
-          },
+          }
         );
 
         return splittedPaths;
       },
-      {},
+      {}
     );
 
     return pathSections;
@@ -107,17 +107,17 @@ export class InferPathsVariablesService {
             (_sectionPathParts) => {
               const _sectionPathOriginParts = _sectionPathParts.slice(
                 0,
-                partIndex,
+                partIndex
               );
 
               return _sectionPathOriginParts.every((_part) =>
-                sectionPathOriginParts.includes(_part),
+                sectionPathOriginParts.includes(_part)
               );
-            },
+            }
           );
 
           const hasDifference = pathSectionWithSameOrigin.some(
-            (_pathSectionParts) => !_pathSectionParts.includes(part),
+            (_pathSectionParts) => !_pathSectionParts.includes(part)
           );
 
           if (hasDifference) {
@@ -149,7 +149,7 @@ export class InferPathsVariablesService {
    */
   private _assembleDifferences(
     differences: Record<string, string[][]>,
-    paths: string[],
+    paths: string[]
   ) {
     const result: PathWithInferedVariables[] = [];
 
@@ -161,7 +161,7 @@ export class InferPathsVariablesService {
         const sectionDifference = sectionDifferences[pathIndex];
 
         if (sectionDifference?.length > 0) {
-          difference[section] = sectionDifference.join("/");
+          difference[section] = sectionDifference.join('/');
         }
       }
 

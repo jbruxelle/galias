@@ -1,12 +1,12 @@
-import { resolve } from "path";
-import { normalizePath, type Plugin, type ViteDevServer } from "vite";
+import { resolve } from 'path';
+import { normalizePath, type Plugin, type ViteDevServer } from 'vite';
 
 import {
   default as watchAndRun,
   Options as WatchAndRunOptions,
-} from "vite-plugin-watch-and-run";
+} from 'vite-plugin-watch-and-run';
 
-import { createMessage } from "@galias/utils";
+import { createMessage } from '@galias/utils';
 
 import {
   ComputeGaliasesUsecase,
@@ -22,7 +22,7 @@ import {
   ResolveConfigurationUsecase,
   ResolveGaliasPathService,
   defaultPluginOptions,
-} from "@galias/core";
+} from '@galias/core';
 
 type ConfigureServerHook = (server: ViteDevServer) => Promise<() => void>;
 
@@ -37,14 +37,14 @@ export default (options: GaliasPluginOptions): Plugin => {
   const resolveGaliasPathService = new ResolveGaliasPathService(
     globMatchAdapter,
     globFSAdapter,
-    inferPathsVariablesService,
+    inferPathsVariablesService
   );
 
   const resolveConfigurationUsecase = new ResolveConfigurationUsecase();
 
   const computeGaliasesUsecase = new ComputeGaliasesUsecase(
     pathAdapter,
-    resolveGaliasPathService,
+    resolveGaliasPathService
   );
 
   const consumeGaliasesUsecase = new ConsumeGaliasesUsecase();
@@ -64,11 +64,11 @@ export default (options: GaliasPluginOptions): Plugin => {
       paths: computedGaliases,
     });
 
-    message("Galiases updated!", "info");
+    message('Galiases updated!', 'info');
   };
 
   return {
-    name: "vite-plugin-galias",
+    name: 'vite-plugin-galias',
     async configResolved() {
       const mergedOptions: ResolveConfigurationInput = {
         ...defaultPluginOptions,
@@ -108,7 +108,7 @@ export default (options: GaliasPluginOptions): Plugin => {
 
             return false;
           },
-          watchKind: ["add", "addDir", "unlink", "unlinkDir", "change"],
+          watchKind: ['add', 'addDir', 'unlink', 'unlinkDir', 'change'],
           async run() {
             await runGalias(resolvedConfiguration);
           },
@@ -123,10 +123,10 @@ export default (options: GaliasPluginOptions): Plugin => {
       const path = computedGaliases[id];
 
       if (!path) {
-        message(`Galias "${id}" not found!`, "error");
+        message(`Galias "${id}" not found!`, 'error');
         message(
-          "Please check your Galias configuration (rootDir, relative paths, ...).",
-          "warning",
+          'Please check your Galias configuration (rootDir, relative paths, ...).',
+          'warning'
         );
         return;
       }

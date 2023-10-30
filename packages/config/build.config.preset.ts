@@ -1,9 +1,9 @@
-import { definePreset } from "unbuild";
+import { definePreset } from 'unbuild';
 
 export const buildConfigPreset = definePreset({
   declaration: true,
   clean: true,
-  outDir: "dist",
+  outDir: 'dist',
   // failOnWarn: true,
   rollup: {
     emitCJS: true,

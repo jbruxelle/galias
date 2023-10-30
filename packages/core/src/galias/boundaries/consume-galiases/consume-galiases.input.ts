@@ -1,4 +1,4 @@
-import { LanguageConfigurationAdapter } from "../../gateways/language-configuration.adapter";
+import { LanguageConfigurationAdapter } from '../../gateways/language-configuration.adapter';
 
 export interface ConsumeGaliasesInput {
   languageConfigurationAdapters: LanguageConfigurationAdapter[];

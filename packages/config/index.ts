@@ -1,1 +1,1 @@
-export { buildConfigPreset } from "./build.config.preset";
+export { buildConfigPreset } from './build.config.preset';

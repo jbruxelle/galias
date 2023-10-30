@@ -1,6 +1,6 @@
-import { CONSTANTS } from "../../constants";
-import { InvalidGaliasError } from "../exceptions/invalid-galias.exception";
-import { Prefix } from "./prefix";
+import { CONSTANTS } from '../../constants';
+import { InvalidGaliasError } from '../exceptions/invalid-galias.exception';
+import { Prefix } from './prefix';
 
 /**
  * Galias is a value object that represents a galias (Glob alias) string.
@@ -15,8 +15,8 @@ import { Prefix } from "./prefix";
  * galias.build({ variable: "value" }); // "path/to/file"
  */
 export class Galias {
-  public static INFERED_PRE_VARIABLE_PREFIX = "__pre_";
-  public static INFERED_POST_VARIABLE_PREFIX = "__post_";
+  public static INFERED_PRE_VARIABLE_PREFIX = '__pre_';
+  public static INFERED_POST_VARIABLE_PREFIX = '__post_';
 
   constructor(private readonly _value: string) {}
 
@@ -42,15 +42,15 @@ export class Galias {
     }
     if (!values) {
       const errorMessage = [
-        "Something went wrong...",
+        'Something went wrong...',
         `Galias: ${this._value}`,
-        "No variable values found.",
-      ].join("\n");
+        'No variable values found.',
+      ].join('\n');
 
       throw new InvalidGaliasError(errorMessage);
     }
 
-    const regexp = new RegExp(CONSTANTS.GALIAS_VARIABLE_REGEXP, "g");
+    const regexp = new RegExp(CONSTANTS.GALIAS_VARIABLE_REGEXP, 'g');
 
     const galiasWithValues = this._value.replace(regexp, (_match, variable) => {
       return this._assembleInferedVariables(variable, values);
@@ -61,18 +61,18 @@ export class Galias {
 
   private _assembleInferedVariables(
     variable: string,
-    variables: Record<string, string>,
+    variables: Record<string, string>
   ): string {
     let assembledVariables: string = variables[variable];
 
     const preVariableKey = Galias.INFERED_PRE_VARIABLE_PREFIX + variable;
     if (variables[preVariableKey]) {
-      assembledVariables = variables[preVariableKey] + "/" + assembledVariables;
+      assembledVariables = variables[preVariableKey] + '/' + assembledVariables;
     }
 
     const postVariableKey = Galias.INFERED_POST_VARIABLE_PREFIX + variable;
     if (variables[postVariableKey]) {
-      assembledVariables += "/" + variables[postVariableKey];
+      assembledVariables += '/' + variables[postVariableKey];
     }
 
     return assembledVariables;

@@ -1,10 +1,10 @@
-import { isVite } from "@galias/utils";
+import { isVite } from '@galias/utils';
 
 export class Prefix {
-  private static readonly ALLOWED_CHARACTERS = ["#", "$", "@"];
+  private static readonly ALLOWED_CHARACTERS = ['#', '$', '@'];
 
   constructor(
-    private readonly _value: (typeof Prefix.ALLOWED_CHARACTERS)[number],
+    private readonly _value: (typeof Prefix.ALLOWED_CHARACTERS)[number]
   ) {
     this._validate();
   }
@@ -15,7 +15,7 @@ export class Prefix {
 
   private _validate(): void {
     if (!isVite()) return;
-    if (this.value === "@") {
+    if (this.value === '@') {
       throw new Error(`The prefix "${this.value}" is not allowed in Vite.`);
     }
   }

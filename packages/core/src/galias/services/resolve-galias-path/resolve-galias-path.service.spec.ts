@@ -1,17 +1,17 @@
-import { IsaacsGlobFSAdapter } from "../../../adapters/secondary/gateways/glob-fs/isaacs.glob-fs.adapters";
-import { PicomatchGlobMatchAdapter } from "../../../adapters/secondary/gateways/glob-match/picomatch.glob-match.adapter";
-import { expectArray } from "../../../utils/tests";
-import { InvalidGaliasPathError } from "../../exceptions/invalid-galias-path.exception";
-import { GaliasPath } from "../../value-objects/galias-path";
-import { InferPathsVariablesService } from "../infer-paths-variables/infer-paths-variables.service";
+import { IsaacsGlobFSAdapter } from '../../../adapters/secondary/gateways/glob-fs/isaacs.glob-fs.adapters';
+import { PicomatchGlobMatchAdapter } from '../../../adapters/secondary/gateways/glob-match/picomatch.glob-match.adapter';
+import { expectArray } from '../../../utils/tests';
+import { InvalidGaliasPathError } from '../../exceptions/invalid-galias-path.exception';
+import { GaliasPath } from '../../value-objects/galias-path';
+import { InferPathsVariablesService } from '../infer-paths-variables/infer-paths-variables.service';
 import {
   ResolveGaliasPathService,
   ResolvedGaliasPathMatch,
-} from "./resolve-galias-path.service";
+} from './resolve-galias-path.service';
 
-import { expect } from "vitest";
+import { expect } from 'vitest';
 
-describe("SERVICE: Resolve Galias path", () => {
+describe('SERVICE: Resolve Galias path', () => {
   let resolveGaliasPathService: ResolveGaliasPathService;
   let inferPathsVariablesService: InferPathsVariablesService;
   let globMatchAdapter: PicomatchGlobMatchAdapter;
@@ -25,171 +25,171 @@ describe("SERVICE: Resolve Galias path", () => {
     resolveGaliasPathService = new ResolveGaliasPathService(
       globMatchAdapter,
       globFSAdapter,
-      inferPathsVariablesService,
+      inferPathsVariablesService
     );
   });
 
-  describe("resolve", () => {
-    it("Should return an empty array if path is empty", async () => {
+  describe('resolve', () => {
+    it('Should return an empty array if path is empty', async () => {
       const resolved = await resolveGaliasPathService.resolve(
-        new GaliasPath(""),
+        new GaliasPath('')
       );
       const expected: ResolvedGaliasPathMatch[] = [];
 
       expectArray(resolved).toEqual(expected);
     });
-    it("Should resolve a basic path", async () => {
+    it('Should resolve a basic path', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/cart/core/application/usecases/create/create.ts",
-        ),
+          'samples/resolve-galias-path/cart/core/application/usecases/create/create.ts'
+        )
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: "samples/resolve-galias-path/cart/core/application/usecases/create/create.ts",
+          path: 'samples/resolve-galias-path/cart/core/application/usecases/create/create.ts',
         },
       ];
       expectArray(resolved).toEqual(expected);
     });
-    it("Should throw an error for a glob path without variables", async () => {
+    it('Should throw an error for a glob path without variables', async () => {
       expect.assertions(1);
       try {
         await resolveGaliasPathService.resolve(
-          new GaliasPath("samples/resolve-galias-path/**/*.adapter.{ts,js}"),
+          new GaliasPath('samples/resolve-galias-path/**/*.adapter.{ts,js}')
         );
       } catch (error) {
         expect(error).toBeInstanceOf(InvalidGaliasPathError);
       }
     });
-    it("Should resolve a glob path with variables and respect exclude option", async () => {
+    it('Should resolve a glob path with variables and respect exclude option', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts",
+          'samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts'
         ),
-        ["**/*.spec.*"],
+        ['**/*.spec.*']
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: "samples/resolve-galias-path/cart/application/usecases/delete/delete.ts",
+          path: 'samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
           variables: {
-            domain: "cart",
-            usecase: "delete",
+            domain: 'cart',
+            usecase: 'delete',
           },
         },
         {
-          path: "samples/resolve-galias-path/cart/application/usecases/create/create.ts",
+          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.ts',
           variables: {
-            domain: "cart",
-            usecase: "create",
+            domain: 'cart',
+            usecase: 'create',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
           variables: {
-            domain: "auth",
-            usecase: "delete",
+            domain: 'auth',
+            usecase: 'delete',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/usecases/create/create.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
+            domain: 'auth',
+            usecase: 'create',
           },
         },
       ];
 
       expectArray(resolved).toEqual(expected);
     });
-    it("Should infer a variable if several paths match with same variables", async () => {
+    it('Should infer a variable if several paths match with same variables', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          "samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}",
+          'samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}'
         ),
-        ["**/*.spec.*"],
+        ['**/*.spec.*']
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: "samples/resolve-galias-path/auth/core/application/usecases/create/create.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "usecases",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'usecases',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
           variables: {
-            domain: "auth",
-            usecase: "delete",
+            domain: 'auth',
+            usecase: 'delete',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/boundaries/create/create.output.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/create.output.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "boundaries",
-            __post_usecase: "output",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'boundaries',
+            __post_usecase: 'output',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/boundaries/create/sample.code.create.file.input.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample.code.create.file.input.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "boundaries",
-            __post_usecase: "sample",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'boundaries',
+            __post_usecase: 'sample',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "boundaries",
-            __post_usecase: "sample1/ts",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'boundaries',
+            __post_usecase: 'sample1/ts',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.html",
+          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.html',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "boundaries",
-            __post_usecase: "sample1/html",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'boundaries',
+            __post_usecase: 'sample1/html',
           },
         },
         {
-          path: "samples/resolve-galias-path/auth/core/application/boundaries/create/sample2.code.create.file.input.ts",
+          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample2.code.create.file.input.ts',
           variables: {
-            domain: "auth",
-            usecase: "create",
-            __pre_usecase: "boundaries",
-            __post_usecase: "sample2",
+            domain: 'auth',
+            usecase: 'create',
+            __pre_usecase: 'boundaries',
+            __post_usecase: 'sample2',
           },
         },
         {
-          path: "samples/resolve-galias-path/cart/application/usecases/create/create.ts",
+          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.ts',
           variables: {
-            domain: "cart",
-            usecase: "create",
-            __post_usecase: "ts",
+            domain: 'cart',
+            usecase: 'create',
+            __post_usecase: 'ts',
           },
         },
         {
-          path: "samples/resolve-galias-path/cart/application/usecases/create/create.html",
+          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.html',
           variables: {
-            domain: "cart",
-            usecase: "create",
-            __post_usecase: "html",
+            domain: 'cart',
+            usecase: 'create',
+            __post_usecase: 'html',
           },
         },
         {
-          path: "samples/resolve-galias-path/cart/application/usecases/delete/delete.ts",
+          path: 'samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
           variables: {
-            domain: "cart",
-            usecase: "delete",
+            domain: 'cart',
+            usecase: 'delete',
           },
         },
       ];

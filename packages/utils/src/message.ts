@@ -1,4 +1,4 @@
-import chalk from "chalk";
+import chalk from 'chalk';
 
 const MESSAGE_TYPES = {
   info: chalk.magenta,
@@ -7,13 +7,13 @@ const MESSAGE_TYPES = {
   warning: chalk.yellow,
 } as const;
 
-const MESSAGE_PREFIX = "[galias] 🌎" as const;
+const MESSAGE_PREFIX = '[galias] 🌎' as const;
 
 type MessageType = keyof typeof MESSAGE_TYPES;
 
 export const createMessage =
   (logsEnabled: boolean = true) =>
-  (message: string, type: MessageType = "info") => {
+  (message: string, type: MessageType = 'info') => {
     if (logsEnabled === false) return;
     const date = new Date().toLocaleTimeString();
     const prefix = chalk.bold(MESSAGE_TYPES[type](MESSAGE_PREFIX));

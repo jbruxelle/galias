@@ -1,6 +1,7 @@
 {
   "name": "@galias/core",
   "version": "0.0.1",
+  "type": "module",
   "description": "Galias (Glob alias) is an alias resolving library with adapters for Typescript, Javascript, Vite (and other bundlers), Node...",
   "keywords": [
     "alias",
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/jbruxelle/galias#readme",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "build": "unbuild",
     "release": "changelogen --release && npm publish && git push --follow-tags",
@@ -63,6 +63,5 @@
     "@types/picomatch": "^2.3.1",
     "vite": "^4.4.9"
   },
-  "packageManager": "pnpm@8.7.1",
-  "prettier": "@galias/config/prettier"
+  "packageManager": "pnpm@8.7.1"
 }

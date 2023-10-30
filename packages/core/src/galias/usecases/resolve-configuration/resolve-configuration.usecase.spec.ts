@@ -1,16 +1,16 @@
-import { FakeConfigurationAdapter } from "../../../adapters/secondary/gateways/configuration/fake.configuration.adapter";
-import { ResolveConfigurationInput } from "../../boundaries/resolve-configuration/resolve-configuration.input";
-import { ResolveConfigurationUsecase } from "./resolve-configuration.usecase";
+import { FakeConfigurationAdapter } from '../../../adapters/secondary/gateways/configuration/fake.configuration.adapter';
+import { ResolveConfigurationInput } from '../../boundaries/resolve-configuration/resolve-configuration.input';
+import { ResolveConfigurationUsecase } from './resolve-configuration.usecase';
 
-describe("USECASE: Resolve configuration", () => {
+describe('USECASE: Resolve configuration', () => {
   let usecase: ResolveConfigurationUsecase;
   let fakeConfigurationAdapter: FakeConfigurationAdapter;
   let defaultOptions: ResolveConfigurationInput;
 
   beforeAll(() => {
     defaultOptions = {
-      prefix: "$",
-      rootDir: "./",
+      prefix: '$',
+      rootDir: './',
       exclude: [],
       galiases: {},
       adapters: [],
@@ -22,7 +22,7 @@ describe("USECASE: Resolve configuration", () => {
     fakeConfigurationAdapter = new FakeConfigurationAdapter();
   });
 
-  it("Should not change the configuration if no galiases are provided", async () => {
+  it('Should not change the configuration if no galiases are provided', async () => {
     const input = { adapters: [fakeConfigurationAdapter], galiases: {} };
     const output = await usecase.execute({ ...defaultOptions, ...input });
 
@@ -34,15 +34,15 @@ describe("USECASE: Resolve configuration", () => {
     expect(output).toEqual(expected);
   });
 
-  it("Should not change the configuration if object galiases are provided", async () => {
+  it('Should not change the configuration if object galiases are provided', async () => {
     const input = {
       adapters: [fakeConfigurationAdapter],
       galiases: {
         galias: {
-          search: "some/path",
-          prefix: "@",
-          exclude: ["src"],
-          rootDir: "src",
+          search: 'some/path',
+          prefix: '@',
+          exclude: ['src'],
+          rootDir: 'src',
         },
       },
     };
@@ -53,23 +53,23 @@ describe("USECASE: Resolve configuration", () => {
       adapters: [fakeConfigurationAdapter],
       galiases: {
         galias: {
-          search: "some/path",
-          prefix: "@",
-          exclude: ["src"],
-          rootDir: "src",
+          search: 'some/path',
+          prefix: '@',
+          exclude: ['src'],
+          rootDir: 'src',
         },
       },
     });
   });
 
-  it("Should change the string galiases to object galiases", async () => {
+  it('Should change the string galiases to object galiases', async () => {
     const input = {
-      prefix: "@",
-      exclude: ["src"],
-      rootDir: "src",
+      prefix: '@',
+      exclude: ['src'],
+      rootDir: 'src',
       adapters: [fakeConfigurationAdapter],
       galiases: {
-        galias: "some/path",
+        galias: 'some/path',
       },
     };
 
@@ -79,10 +79,10 @@ describe("USECASE: Resolve configuration", () => {
       adapters: [fakeConfigurationAdapter],
       galiases: {
         galias: {
-          search: "some/path",
-          prefix: "@",
-          exclude: ["src"],
-          rootDir: "src",
+          search: 'some/path',
+          prefix: '@',
+          exclude: ['src'],
+          rootDir: 'src',
         },
       },
     });

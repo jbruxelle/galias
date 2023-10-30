@@ -1,5 +1,5 @@
-import { Usecase } from "../../../types/usecase";
-import { ConsumeGaliasesInput } from "../../boundaries/consume-galiases/consume-galiases.input";
+import { Usecase } from '../../../types/usecase';
+import { ConsumeGaliasesInput } from '../../boundaries/consume-galiases/consume-galiases.input';
 
 export class ConsumeGaliasesUsecase
   implements Usecase<ConsumeGaliasesInput, void>
