@@ -1,4 +1,7 @@
 {
   "extends": "@galias/config/typescript",
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  },
   "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
 }
