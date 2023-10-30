@@ -40,12 +40,12 @@ describe('SERVICE: Resolve Galias path', () => {
     it('Should resolve a basic path', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          'samples/resolve-galias-path/cart/core/application/usecases/create/create.ts'
+          '../../samples/resolve-galias-path/cart/core/application/usecases/create/create.ts'
         )
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: 'samples/resolve-galias-path/cart/core/application/usecases/create/create.ts',
+          path: '../../samples/resolve-galias-path/cart/core/application/usecases/create/create.ts',
         },
       ];
       expectArray(resolved).toEqual(expected);
@@ -54,7 +54,9 @@ describe('SERVICE: Resolve Galias path', () => {
       expect.assertions(1);
       try {
         await resolveGaliasPathService.resolve(
-          new GaliasPath('samples/resolve-galias-path/**/*.adapter.{ts,js}')
+          new GaliasPath(
+            '../../samples/resolve-galias-path/**/*.adapter.{ts,js}'
+          )
         );
       } catch (error) {
         expect(error).toBeInstanceOf(InvalidGaliasPathError);
@@ -63,34 +65,34 @@ describe('SERVICE: Resolve Galias path', () => {
     it('Should resolve a glob path with variables and respect exclude option', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          'samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts'
+          '../../samples/resolve-galias-path/{{domain}}/**/usecases/{{usecase}}/*.ts'
         ),
         ['**/*.spec.*']
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: 'samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
+          path: '../../samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
           variables: {
             domain: 'cart',
             usecase: 'delete',
           },
         },
         {
-          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.ts',
+          path: '../../samples/resolve-galias-path/cart/application/usecases/create/create.ts',
           variables: {
             domain: 'cart',
             usecase: 'create',
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
           variables: {
             domain: 'auth',
             usecase: 'delete',
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -103,13 +105,13 @@ describe('SERVICE: Resolve Galias path', () => {
     it('Should infer a variable if several paths match with same variables', async () => {
       const resolved = await resolveGaliasPathService.resolve(
         new GaliasPath(
-          'samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}'
+          '../../samples/resolve-galias-path/{{domain}}/**/application/**/{{usecase}}/*.{ts,html}'
         ),
         ['**/*.spec.*']
       );
       const expected: ResolvedGaliasPathMatch[] = [
         {
-          path: 'samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/usecases/create/create.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -117,14 +119,14 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/usecases/delete/delete.ts',
           variables: {
             domain: 'auth',
             usecase: 'delete',
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/create.output.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/boundaries/create/create.output.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -133,7 +135,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample.code.create.file.input.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/boundaries/create/sample.code.create.file.input.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -142,7 +144,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -151,7 +153,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.html',
+          path: '../../samples/resolve-galias-path/auth/core/application/boundaries/create/sample1.code.create.file.input.html',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -160,7 +162,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/auth/core/application/boundaries/create/sample2.code.create.file.input.ts',
+          path: '../../samples/resolve-galias-path/auth/core/application/boundaries/create/sample2.code.create.file.input.ts',
           variables: {
             domain: 'auth',
             usecase: 'create',
@@ -169,7 +171,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.ts',
+          path: '../../samples/resolve-galias-path/cart/application/usecases/create/create.ts',
           variables: {
             domain: 'cart',
             usecase: 'create',
@@ -177,7 +179,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/cart/application/usecases/create/create.html',
+          path: '../../samples/resolve-galias-path/cart/application/usecases/create/create.html',
           variables: {
             domain: 'cart',
             usecase: 'create',
@@ -185,7 +187,7 @@ describe('SERVICE: Resolve Galias path', () => {
           },
         },
         {
-          path: 'samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
+          path: '../../samples/resolve-galias-path/cart/application/usecases/delete/delete.ts',
           variables: {
             domain: 'cart',
             usecase: 'delete',
@@ -200,8 +202,8 @@ describe('SERVICE: Resolve Galias path', () => {
 
 const expectArray = (actual: any[]) => ({
   toEqual: (expected: any[]) => {
-    for (const entry of actual) {
-      expect(expected).toContainEqual(entry);
+    for (const item of expected) {
+      expect(actual).toContainEqual(item);
     }
   },
 });

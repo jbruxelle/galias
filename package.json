@@ -7,12 +7,14 @@
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
-    "lint:fix": "turbo lint:fix"
+    "lint:fix": "turbo lint:fix",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.34.6",
     "changelogen": "^0.5.5",
     "eslint": "^8.45.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "turbo": "^1.10.16",

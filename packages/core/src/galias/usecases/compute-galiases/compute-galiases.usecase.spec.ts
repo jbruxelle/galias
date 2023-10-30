@@ -3,8 +3,11 @@ import { ComputeGaliasesInput } from '../../boundaries/compute-galiases/compute-
 
 import { InferPathsVariablesService } from '../../services/infer-paths-variables/infer-paths-variables.service';
 import { PathAdapter } from '../../gateways/path.adapters';
-import { PicomatchGlobMatchAdapter, IsaacsGlobFSAdapter } from '../../..';
-import { TestsPathAdapter } from '../../../adapters/path/tests.path.adapter';
+import {
+  PicomatchGlobMatchAdapter,
+  IsaacsGlobFSAdapter,
+  NodePathAdapter,
+} from '../../..';
 import { GlobFSAdapter } from '../../gateways/glob-fs.adapters';
 import { GlobMatchAdapter } from '../../gateways/glob-match.adapter';
 import { ComputeGaliasesUsecase } from './compute-galiases.usecase';
@@ -21,7 +24,7 @@ describe('USECASE: Compute galiases', () => {
     globMatchAdapter = new PicomatchGlobMatchAdapter();
     globFSAdapter = new IsaacsGlobFSAdapter();
     inferPathsVariablesService = new InferPathsVariablesService();
-    pathAdapter = new TestsPathAdapter();
+    pathAdapter = new NodePathAdapter();
     resolveGaliasPathService = new ResolveGaliasPathService(
       globMatchAdapter,
       globFSAdapter,
@@ -37,13 +40,13 @@ describe('USECASE: Compute galiases', () => {
     const input: ComputeGaliasesInput = {
       galiases: {
         'my-galias/{{variable}}': {
-          rootDir: 'samples/compute-galiases',
+          rootDir: '../../samples/compute-galiases',
           search: '**/some.file.with.variable.{{variable}}.ts',
           exclude: ['**/*.spec.ts'],
           prefix: '#',
         },
         'my-alias': {
-          rootDir: './samples/compute-galiases',
+          rootDir: '../../samples/compute-galiases',
           prefix: '$',
           exclude: [],
           search: 'folder1/file.ts',
@@ -53,8 +56,8 @@ describe('USECASE: Compute galiases', () => {
 
     const expected = {
       '#my-galias/foo':
-        './samples/compute-galiases/fodler2/some.file.with.variable.foo.ts',
-      '$my-alias': './samples/compute-galiases/folder1/file.ts',
+        '../../samples/compute-galiases/fodler2/some.file.with.variable.foo.ts',
+      '$my-alias': '../../samples/compute-galiases/folder1/file.ts',
     };
 
     const result = await computeGaliasesUsecase.execute(input);

@@ -7,8 +7,9 @@ describe('USECASE: Consume galiases', () => {
 
   beforeEach(() => {
     configurationAdapter = new FakeConfigurationAdapter({
-      source: './samples/resolve-configuration/configuration/fakeconfig.json',
-      output: './samples/consume-galiases/fakeconfig.json',
+      source:
+        '../../samples/resolve-configuration/configuration/fakeconfig.json',
+      output: '../../samples/consume-galiases/fakeconfig.json',
     });
 
     usecase = new ConsumeGaliasesUsecase();

@@ -1,11 +1,11 @@
-import { Galias } from '../../value-objects/galias';
-import { GaliasPath } from '../../value-objects/galias-path';
-import { Prefix } from '../../value-objects/prefix';
+import { Usecase } from '../../../types/usecase';
 import { ComputeGaliasesInput } from '../../boundaries/compute-galiases/compute-galiases.input';
 import { ComputeGaliasesOutput } from '../../boundaries/compute-galiases/compute-galiases.output';
 import { PathAdapter } from '../../gateways/path.adapters';
 import { ResolveGaliasPathService } from '../../services/resolve-galias-path/resolve-galias-path.service';
-import { Usecase } from '../../../types/usecase';
+import { Galias } from '../../value-objects/galias';
+import { GaliasPath } from '../../value-objects/galias-path';
+import { Prefix } from '../../value-objects/prefix';
 
 export class ComputeGaliasesUsecase
   implements Usecase<ComputeGaliasesInput, ComputeGaliasesOutput>
@@ -38,7 +38,10 @@ export class ComputeGaliasesUsecase
 
       for (const resolvedGaliasPathMatch of resolvedGaliasPath) {
         const { path: resolvedPath, variables } = resolvedGaliasPathMatch;
-        const relativeResolvedPath = `./${resolvedPath}`;
+        const relativeResolvedPath = this._pathAdapter.relativePosix(
+          './',
+          resolvedPath
+        );
         const assembledGalias = galias.build(prefix, variables);
         result = {
           ...result,
