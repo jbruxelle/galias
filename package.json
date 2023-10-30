@@ -9,7 +9,6 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix"
   },
-  "private": true,
   "devDependencies": {
     "@vitest/coverage-v8": "^0.34.6",
     "changelogen": "^0.5.5",
