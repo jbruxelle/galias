@@ -24,7 +24,7 @@
   "license": "MIT",
   "scripts": {
     "build": "unbuild",
-    "release": "changelogen --release && npm publish && git push --follow-tags",
+    "release": "changelogen --release --push && npm publish",
     "prepack": "pnpm run build",
     "lint": "eslint --cache && prettier -c .",
     "lint:fix": "eslint --cache && prettier -c . -w",
