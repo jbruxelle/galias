@@ -33,7 +33,8 @@
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "files": [
-    "dist"
+    "dist",
+    "package.json"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
