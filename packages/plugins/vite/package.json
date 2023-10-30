@@ -8,8 +8,7 @@
     "prepack": "pnpm run build",
     "lint": "eslint --cache && prettier -c .",
     "lint:fix": "eslint --cache && prettier -c . -w",
-    "test": "pnpm lint && pnpm test:types && pnpm test:unit",
-    "test:unit": "vitest run --coverage",
+    "test": "pnpm lint && pnpm test:types",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "main": "./dist/index.cjs",

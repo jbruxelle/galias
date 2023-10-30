@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "release": "turbo release",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
