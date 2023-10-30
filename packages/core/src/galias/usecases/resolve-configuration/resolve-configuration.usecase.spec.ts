@@ -1,5 +1,6 @@
-import { FakeConfigurationAdapter } from '../../../adapters/secondary/gateways/configuration/fake.configuration.adapter';
+ import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
 import { ResolveConfigurationInput } from '../../boundaries/resolve-configuration/resolve-configuration.input';
+import { defaultPluginOptions } from '../../plugin/plugin.options.defaults';
 import { ResolveConfigurationUsecase } from './resolve-configuration.usecase';
 
 describe('USECASE: Resolve configuration', () => {
@@ -7,15 +8,7 @@ describe('USECASE: Resolve configuration', () => {
   let fakeConfigurationAdapter: FakeConfigurationAdapter;
   let defaultOptions: ResolveConfigurationInput;
 
-  beforeAll(() => {
-    defaultOptions = {
-      prefix: '$',
-      rootDir: './',
-      exclude: [],
-      galiases: {},
-      adapters: [],
-    };
-  });
+   
 
   beforeEach(() => {
     usecase = new ResolveConfigurationUsecase();
@@ -24,7 +17,7 @@ describe('USECASE: Resolve configuration', () => {
 
   it('Should not change the configuration if no galiases are provided', async () => {
     const input = { adapters: [fakeConfigurationAdapter], galiases: {} };
-    const output = await usecase.execute({ ...defaultOptions, ...input });
+    const output = await usecase.execute({ ...defaultPluginOptions, ...input });
 
     const expected = {
       adapters: [fakeConfigurationAdapter],

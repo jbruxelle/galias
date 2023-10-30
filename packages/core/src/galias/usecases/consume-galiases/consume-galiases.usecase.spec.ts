@@ -1,4 +1,4 @@
-import { FakeConfigurationAdapter } from '../../../adapters/secondary/gateways/configuration/fake.configuration.adapter';
+ import { FakeConfigurationAdapter } from '../../../adapters/configuration/fake.configuration.adapter';
 import { ConsumeGaliasesUsecase } from './consume-galiases.usecase';
 
 describe('USECASE: Consume galiases', () => {
@@ -16,7 +16,7 @@ describe('USECASE: Consume galiases', () => {
 
   it('Should not override existing configuration aliases', async () => {
     await usecase.execute({
-      configurationAdapters: [configurationAdapter],
+      languageConfigurationAdapters: [configurationAdapter],
       paths: { $auth: 'something' },
     });
 

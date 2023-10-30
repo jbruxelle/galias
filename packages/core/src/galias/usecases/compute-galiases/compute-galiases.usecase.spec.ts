@@ -1,13 +1,13 @@
 import { ResolveGaliasPathService } from '../../services/resolve-galias-path/resolve-galias-path.service';
 import { ComputeGaliasesInput } from '../../boundaries/compute-galiases/compute-galiases.input';
-import { PathAdapter } from '../../gateway/path.adapters';
-import { ComputeGaliasesUsecase } from './compute-galiases.usecase';
-import { TestsPathAdapter } from '../../../adapters/secondary/gateways/path/tests.path.adapter';
-import { GlobMatchAdapter } from '../../gateway/glob-match.adapter';
-import { GlobFSAdapter } from '../../gateway/glob-fs.adapters';
-import { PicomatchGlobMatchAdapter } from '../../../adapters/secondary/gateways/glob-match/picomatch.glob-match.adapter';
-import { IsaacsGlobFSAdapter } from '../../../adapters/secondary/gateways/glob-fs/isaacs.glob-fs.adapters';
+
 import { InferPathsVariablesService } from '../../services/infer-paths-variables/infer-paths-variables.service';
+import { PathAdapter } from '../../gateways/path.adapters';
+import { PicomatchGlobMatchAdapter, IsaacsGlobFSAdapter } from '../../..';
+import { TestsPathAdapter } from '../../../adapters/path/tests.path.adapter';
+import { GlobFSAdapter } from '../../gateways/glob-fs.adapters';
+import { GlobMatchAdapter } from '../../gateways/glob-match.adapter';
+import { ComputeGaliasesUsecase } from './compute-galiases.usecase';
 
 describe('USECASE: Compute galiases', () => {
   let pathAdapter: PathAdapter;

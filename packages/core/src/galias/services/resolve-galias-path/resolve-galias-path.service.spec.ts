@@ -1,6 +1,6 @@
-import { IsaacsGlobFSAdapter } from '../../../adapters/secondary/gateways/glob-fs/isaacs.glob-fs.adapters';
-import { PicomatchGlobMatchAdapter } from '../../../adapters/secondary/gateways/glob-match/picomatch.glob-match.adapter';
-import { expectArray } from '../../../utils/tests';
+ 
+import { IsaacsGlobFSAdapter } from '../../../adapters/glob-fs/isaacs.glob-fs.adapters';
+import { PicomatchGlobMatchAdapter } from '../../../adapters/glob-match/picomatch.glob-match.adapter';
 import { InvalidGaliasPathError } from '../../exceptions/invalid-galias-path.exception';
 import { GaliasPath } from '../../value-objects/galias-path';
 import { InferPathsVariablesService } from '../infer-paths-variables/infer-paths-variables.service';
@@ -198,3 +198,11 @@ describe('SERVICE: Resolve Galias path', () => {
     });
   });
 });
+
+const expectArray = (actual: any[]) => ({
+  toEqual: (expected: any[]) => {
+      for (const entry of actual) {
+          expect(expected).toContainEqual(entry);
+      }
+  }
+})
