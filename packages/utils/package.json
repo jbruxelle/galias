@@ -37,6 +37,5 @@
   "devDependencies": {
     "@galias/config": "workspace:*",
     "@types/node": "^20.8.0"
-  },
-  "prettier": "@galias/config/prettier"
+  }
 }
