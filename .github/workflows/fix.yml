@@ -2,7 +2,7 @@ name: fix.ci
 on:
   pull_request:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 permissions:
   contents: read
@@ -16,10 +16,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "pnpm"
+          cache: 'pnpm'
       - run: pnpm install
+      - run: pnpm build
       - name: Fix lint issues
         run: pnpm lint:fix
       - uses: autofix-ci/action@8caa572fd27b0019a65e4c695447089c8d3138b9
         with:
-          commit-message: "chore: apply automated fixes"
+          commit-message: 'chore: apply automated fixes'
