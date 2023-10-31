@@ -4,7 +4,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "pnpm eslint:check && pnpm prettier:check",
+    "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
+    "eslint:check": "eslint --cache . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "eslint:fix": "eslint --cache . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "prettier:check": "prettier -c .",
+    "prettier:fix": "prettier -c . --write"
   },
   "dependencies": {
     "react": "^18.2.0",
