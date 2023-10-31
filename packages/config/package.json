@@ -14,6 +14,7 @@
     "config",
     "ddd"
   ],
+  "repository": "https://github.com/jbruxelle/sobriquet",
   "author": {
     "name": "Julian BRUXELLE",
     "email": "contact@julianbruxelle.fr",

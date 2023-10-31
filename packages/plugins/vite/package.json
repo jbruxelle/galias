@@ -1,6 +1,31 @@
 {
   "name": "@sobriquet/vite",
   "version": "0.0.1",
+  "description": "Sobriquet is an alias resolving library using glob patterns. This is the vite plugin package for Sobriquet.",
+  "keywords": [
+    "alias",
+    "resolve",
+    "glob",
+    "typescript",
+    "javascript",
+    "vite",
+    "node",
+    "sobriquet",
+    "vite",
+    "plugin",
+    "ddd"
+  ],
+  "repository": "https://github.com/jbruxelle/sobriquet",
+  "author": {
+    "name": "Julian BRUXELLE",
+    "email": "contact@julianbruxelle.fr",
+    "url": "https://github.com/jbruxelle"
+  },
+  "bugs": {
+    "url": "https://github.com/jbruxelle/sobriquet/issues"
+  },
+  "homepage": "https://github.com/jbruxelle/sobriquet#readme",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "unbuild",
