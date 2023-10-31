@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "unbuild",
-    "release": "changelogen --release && npm publish",
+    "release": "changelogen --dir ./ --release && npm publish",
     "prepack": "pnpm run build",
     "lint": "pnpm eslint:check && pnpm prettier:check",
     "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
