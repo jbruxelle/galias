@@ -6,6 +6,6 @@ export default defineBuildConfig([
     preset: buildConfigPreset,
     name: '@sobriquet/config',
     entries: [{ input: './index.ts' }],
-    externals: ['unbuild'],
+    externals: ['unbuild', 'changelogen'],
   },
 ]);
