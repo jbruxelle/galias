@@ -1,6 +1,6 @@
 {
   "name": "@sobriquet/utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Sobriquet is an alias resolving library using glob patterns. This is the utils package for Sobriquet.",
   "keywords": [
     "alias",
@@ -28,7 +28,7 @@
   "type": "module",
   "scripts": {
     "build": "unbuild",
-    "release": "changelogen --dir ./ --release && npm publish",
+    "release": "changelogen --dir ./ --release",
     "prepack": "pnpm run build",
     "lint": "pnpm eslint:check && pnpm prettier:check",
     "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
