@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.0.3
+
 ## v0.0.2
 
-Initial release of @sobriquet/config
+Initial release of @sobriquet/utils
