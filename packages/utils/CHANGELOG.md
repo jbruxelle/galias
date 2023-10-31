@@ -1,9 +1,13 @@
-# Changelog
+# @sobriquet/utils
 
-## v0.0.4
+## 0.1.0
 
-## v0.0.3
+### Minor Changes
 
-## v0.0.2
+- Sobriquet release
 
-Initial release of @sobriquet/utils
+## 0.0.5
+
+### Patch Changes
+
+- Initial changeset

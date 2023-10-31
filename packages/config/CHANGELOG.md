@@ -1,11 +1,13 @@
-# Changelog
+# @sobriquet/config
 
-## v0.0.5
+## 0.1.0
 
-[compare changes](https://github.com/jbruxelle/galias/compare/@sobriquet/config@v0.0.3...v0.0.5)
+### Minor Changes
 
-## v0.0.3
+- Sobriquet release
 
-## v0.0.2
+## 0.0.6
 
-Initial release of @sobriquet/config
+### Patch Changes
+
+- Initial changeset

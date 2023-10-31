@@ -1,6 +1,6 @@
 {
   "name": "@sobriquet/utils",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Sobriquet is an alias resolving library using glob patterns. This is the utils package for Sobriquet.",
   "keywords": [
     "alias",

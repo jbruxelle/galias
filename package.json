@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "version": "changeset version",
-    "changeset": "changeset",
-    "release": "pnpm run build && changeset publish",
+    "packages:version": "changeset version",
+    "packages:changeset": "changeset",
+    "packages:release": "changeset publish",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
