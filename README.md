@@ -1,4 +1,4 @@
-# Galias
+# sobriquet
 
 Write aliases using glob patterns and variables.
 
@@ -17,15 +17,15 @@ Next steps:
 ## Installation
 
 ```bash
-npm i -D vite-plugin-galias
+npm i -D vite-plugin-sobriquet
 ```
 
 ```bash
-yarn add -d vite-plugin-galias
+yarn add -d vite-plugin-sobriquet
 ```
 
 ```bash
-pnpm i -D vite-plugin-galias
+pnpm i -D vite-plugin-sobriquet
 ```
 
 ## Usage
@@ -35,14 +35,14 @@ pnpm i -D vite-plugin-galias
 ```ts
 // vite.config.ts
 import { defineConfig } from "vite";
-import galias from "vite-plugin-galias";
+import sobriquet from "vite-plugin-sobriquet";
 import {
   TSConfigAdapter /** JSConfigAdapter */,
-} from "vite-plugin-galias/adapters";
+} from "vite-plugin-sobriquet/adapters";
 
 export default defineConfig({
   plugins: [
-    galias({
+    sobriquet({
       adapters: [
         new TSConfigAdapter({
           source: "tsconfig.base.json",
@@ -52,7 +52,7 @@ export default defineConfig({
       rootDir: "./src",
       prefix: "#",
       exclude: ["**/*.test.ts"],
-      galiases: {
+      sobriquetes: {
         "my-alias": "some/folder/file.ts",
         "{{component}}": "components/{{component}}/index.{tsx,jsx}",
         "{{domain}}/{{usecase}}": {

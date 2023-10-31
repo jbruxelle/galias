@@ -1,8 +1,8 @@
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import {
   LanguageConfigurationAdapter,
   LanguageConfigurationAdapterOptions,
-} from '../../galias/gateways/language-configuration.adapter';
+} from '../../sobriquet/gateways/language-configuration.adapter';
 
 export class FakeConfigurationAdapter implements LanguageConfigurationAdapter {
   private readonly _name: string = 'fake';
@@ -47,7 +47,7 @@ export class FakeConfigurationAdapter implements LanguageConfigurationAdapter {
 
   async consume(computedPaths: Record<string, string>): Promise<void> {
     const configuration = await this.resolve();
-    const paths = configuration['paths'];
+    const paths = configuration.paths;
 
     const updatedConfiguration = {
       ...configuration,

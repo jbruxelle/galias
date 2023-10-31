@@ -1,8 +1,8 @@
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import {
   LanguageConfigurationAdapter,
   LanguageConfigurationAdapterOptions,
-} from '../../galias/gateways/language-configuration.adapter';
+} from '../../sobriquet/gateways/language-configuration.adapter';
 
 export abstract class BaseLanguageConfigurationAdapter
   implements LanguageConfigurationAdapter
@@ -42,8 +42,8 @@ export abstract class BaseLanguageConfigurationAdapter
   async consume(computedPaths: Record<string, string>): Promise<void> {
     const configuration = await this.resolve();
 
-    const compilerOptions = configuration['compilerOptions'];
-    const paths = compilerOptions['paths'];
+    const compilerOptions = configuration.compilerOptions;
+    const paths = compilerOptions.paths;
     const transformedComputedPaths = this._formatComputedPaths(computedPaths);
 
     const updatedConfiguration = {
@@ -56,7 +56,7 @@ export abstract class BaseLanguageConfigurationAdapter
 
     const updatedConfigurationString = JSON.stringify(
       updatedConfiguration,
-      null,
+      undefined,
       2
     );
 
@@ -73,7 +73,7 @@ export abstract class BaseLanguageConfigurationAdapter
 
   private _ignoreComments(content: string): string {
     return content.replace(
-      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g,
+      /\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\S\s]*?\*\/)/g,
       (match, g) => (g ? '' : match)
     );
   }

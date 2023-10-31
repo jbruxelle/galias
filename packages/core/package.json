@@ -1,8 +1,8 @@
 {
-  "name": "@galias/core",
+  "name": "@sobriquet/core",
   "version": "0.0.1",
   "type": "module",
-  "description": "Galias (Glob alias) is an alias resolving library with adapters for Typescript, Javascript, Vite (and other bundlers), Node...",
+  "description": "sobriquet is an alias resolving library using glob patterns",
   "keywords": [
     "alias",
     "resolve",
@@ -10,7 +10,8 @@
     "typescript",
     "javascript",
     "vite",
-    "node"
+    "node",
+    "sobriquet"
   ],
   "author": {
     "name": "Julian BRUXELLE",
@@ -18,16 +19,20 @@
     "url": "https://github.com/jbruxelle"
   },
   "bugs": {
-    "url": "https://github.com/jbruxelle/galias/issues"
+    "url": "https://github.com/jbruxelle/sobriquet/issues"
   },
-  "homepage": "https://github.com/jbruxelle/galias#readme",
+  "homepage": "https://github.com/jbruxelle/sobriquet#readme",
   "license": "MIT",
   "scripts": {
     "build": "unbuild",
     "release": "changelogen --release --push && npm publish",
     "prepack": "pnpm run build",
-    "lint": "eslint --cache && prettier -c .",
-    "lint:fix": "eslint --cache && prettier -c . -w",
+    "lint": "pnpm eslint:check && pnpm prettier:check",
+    "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
+    "eslint:check": "eslint --cache .",
+    "eslint:fix": "eslint --cache . --fix",
+    "prettier:check": "prettier -c .",
+    "prettier:fix": "prettier -c . --write",
     "test": "pnpm lint && pnpm test:types && pnpm test:unit",
     "test:unit": "vitest run --coverage",
     "test:types": "tsc --noEmit --skipLibCheck"
@@ -58,11 +63,14 @@
     "picomatch": "^2.3.1"
   },
   "devDependencies": {
-    "@galias/config": "workspace:*",
-    "@galias/utils": "workspace:*",
+    "@sobriquet/config": "workspace:*",
+    "@sobriquet/utils": "workspace:*",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.1",
     "vite": "^4.4.9"
   },
-  "packageManager": "pnpm@8.7.1"
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": "@sobriquet/config/prettier"
 }

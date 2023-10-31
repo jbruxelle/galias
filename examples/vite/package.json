@@ -11,7 +11,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@galias/vite": "workspace:*",
+    "@sobriquet/vite": "workspace:*",
+    "@sobriquet/config": "workspace:*",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -22,5 +23,6 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  }
+  },
+  "prettier": "@sobriquet/config/prettier"
 }

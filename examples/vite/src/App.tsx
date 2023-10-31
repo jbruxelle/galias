@@ -1,23 +1,25 @@
-import { Counter } from "$counter";
-import { Footer } from "$footer";
-import { Header } from "$header";
-import { Logotype } from "$logotype";
-import "./App.css";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { Counter } from '$counter';
+import { Footer } from '$footer';
+import { Header } from '$header';
+import { Logotype } from '$logotype';
+import { SomeComponent } from '$some-component';
+import './App.css';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
 
 function App() {
   return (
     <>
       <div>
         <Header />
+        <SomeComponent />
         <Logotype
           link="https://vitejs.dev"
-          image={{ src: viteLogo, alt: "Vite logo" }}
+          image={{ src: viteLogo, alt: 'Vite logo' }}
         />
         <Logotype
           link="https://react.dev"
-          image={{ src: reactLogo, alt: "React logo" }}
+          image={{ src: reactLogo, alt: 'React logo' }}
         />
       </div>
       <h1>Vite + React</h1>

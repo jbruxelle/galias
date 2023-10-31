@@ -1,36 +1,36 @@
 {
-  "name": "@galias/config",
+  "name": "@sobriquet/config",
   "version": "0.0.1",
-  "description": "Configurations for Galias",
+  "description": "Configurations for sobriquet",
   "private": false,
   "type": "module",
   "scripts": {
     "build": "unbuild",
     "release": "changelogen --release --push && npm publish",
     "prepack": "pnpm run build",
-    "lint": "eslint --cache && prettier -c .",
-    "lint:fix": "eslint --cache && prettier -c . -w",
+    "lint": "pnpm eslint:check && pnpm prettier:check",
+    "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
+    "eslint:check": "eslint --cache .",
+    "eslint:fix": "eslint --cache . --fix",
+    "prettier:check": "prettier -c .",
+    "prettier:fix": "prettier -c . --write",
     "test": "pnpm lint && pnpm test:types",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "files": [
     "dist",
     "package.json",
-    "tsconfig.base.json"
+    "tsconfig.base.json",
+    ".eslintrc.cjs",
+    ".prettierrc.cjs"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     "./typescript": "./tsconfig.base.json",
-    "./prettier": {
-      "import": "./dist/prettier/.prettierrc.mjs",
-      "require": "./dist/prettier/.prettierrc.cjs"
-    },
-    "./eslint": {
-      "import": "./dist/eslint/.eslintrc.mjs",
-      "require": "./dist/eslint/.eslintrc.cjs"
-    },
+    "./prettier": "./.prettierrc.cjs",
+    "./eslint": "./.eslintrc.cjs",
     ".": {
       "types": "./dist/index.d.ts",
       "import": {
@@ -43,9 +43,6 @@
       }
     }
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -55,7 +52,15 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-unicorn": "^47.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": "./.prettierrc.cjs",
+  "devDependencies": {
+    "@types/eslint": "^8.44.6"
   }
 }

@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -20,26 +16,15 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "$logotype": [
-        "./src/components/logotype/index.tsx"
-      ],
-      "$header": [
-        "./src/components/header/index.tsx"
-      ],
-      "$footer": [
-        "./src/components/footer/index.tsx"
-      ],
-      "$counter": [
-        "./src/components/counter/index.tsx"
-      ],
-      "$card": [
-        "./src/components/card/index.tsx"
-      ]
+      "$some-component": ["./src/components/some-component/index.tsx"],
+      "$logotype": ["./src/components/logotype/index.tsx"],
+      "$header": ["./src/components/header/index.tsx"],
+      "$footer": ["./src/components/footer/index.tsx"],
+      "$counter": ["./src/components/counter/index.tsx"],
+      "$card": ["./src/components/card/index.tsx"]
     }
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"

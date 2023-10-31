@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+
+  "name": "@sobriquet/REPLACE_ME",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "unbuild",
+    "release": "changelogen --release",
+    "lint": "eslint --cache && prettier -c .",
+    "lint:fix": "eslint --cache && prettier -c . -w",
+    "test": "pnpm lint && pnpm test:types && vitest run --coverage",
+    "test:unit": "vitest run --coverage",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@sobriquet/config": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": "@sobriquet/config/prettier"
+}

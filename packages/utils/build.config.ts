@@ -1,8 +1,8 @@
 import { defineBuildConfig } from 'unbuild';
-import { buildConfigPreset } from '@galias/config';
+import { buildConfigPreset } from '@sobriquet/config';
 
 export default defineBuildConfig({
   preset: buildConfigPreset,
-  name: '@galias/utils',
+  name: '@sobriquet/utils',
   entries: ['./src/index.ts'],
 });

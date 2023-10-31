@@ -1,5 +1,5 @@
 {
-  "name": "galias",
+  "name": "sobriquet",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -24,7 +24,7 @@
     "vitest": "^0.34.6"
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write",
-    "*.{ts,js}": "eslint --fix"
+    "*": "prettier -c --ignore-unknown --write",
+    "*.{ts,js}": "eslint --cache --fix"
   }
 }

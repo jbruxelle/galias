@@ -3,24 +3,13 @@
     "module": "commonjs",
     "target": "es6",
     "paths": {
-      "$logotype": [
-        "./src/components/logotype/index.tsx"
-      ],
-      "$header": [
-        "./src/components/header/index.tsx"
-      ],
-      "$footer": [
-        "./src/components/footer/index.tsx"
-      ],
-      "$counter": [
-        "./src/components/counter/index.tsx"
-      ],
-      "$card": [
-        "./src/components/card/index.tsx"
-      ]
+      "$some-component": ["./src/components/some-component/index.tsx"],
+      "$logotype": ["./src/components/logotype/index.tsx"],
+      "$header": ["./src/components/header/index.tsx"],
+      "$footer": ["./src/components/footer/index.tsx"],
+      "$counter": ["./src/components/counter/index.tsx"],
+      "$card": ["./src/components/card/index.tsx"]
     }
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

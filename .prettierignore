@@ -1,4 +1,6 @@
-dist
-node_modules
-.turbo
-coverage
+**/dist
+**/node_modules
+**/.turbo
+**/coverage
+**/samples
+**/.template

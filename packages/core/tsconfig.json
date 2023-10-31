@@ -1,5 +1,5 @@
 {
-  "extends": "@galias/config/typescript",
+  "extends": "@sobriquet/config/typescript",
   "compilerOptions": {
     "types": ["vitest/globals"]
   },

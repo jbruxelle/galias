@@ -1,18 +1,17 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { normalizePath, type Plugin, type ViteDevServer } from 'vite';
 
-import {
-  default as watchAndRun,
+import watchAndRun, {
   Options as WatchAndRunOptions,
 } from 'vite-plugin-watch-and-run';
 
-import { createMessage } from '@galias/utils';
+import { createMessage } from '@sobriquet/utils';
 
 import {
-  ComputeGaliasesUsecase,
-  ConsumeGaliasesUsecase,
-  GaliasPath,
-  GaliasPluginOptions,
+  ComputeSobriquetsUsecase,
+  ConsumeSobriquetsUsecase,
+  SobriquetPath,
+  SobriquetPluginOptions,
   InferPathsVariablesService,
   IsaacsGlobFSAdapter,
   NodePathAdapter,
@@ -20,21 +19,21 @@ import {
   ResolveConfigurationInput,
   ResolveConfigurationOutput,
   ResolveConfigurationUsecase,
-  ResolveGaliasPathService,
+  ResolveSobriquetPathService,
   defaultPluginOptions,
-} from '@galias/core';
+} from '@sobriquet/core';
 
 type ConfigureServerHook = (server: ViteDevServer) => Promise<() => void>;
 
-export default (options: GaliasPluginOptions): Plugin => {
+export default (options: SobriquetPluginOptions): Plugin => {
   let watchAndRunConfigureServer: ConfigureServerHook;
-  let computedGaliases: Record<string, string> = {};
+  let computedSobriquets: Record<string, string> = {};
 
   const globMatchAdapter = new PicomatchGlobMatchAdapter();
   const globFSAdapter = new IsaacsGlobFSAdapter();
   const pathAdapter = new NodePathAdapter();
   const inferPathsVariablesService = new InferPathsVariablesService();
-  const resolveGaliasPathService = new ResolveGaliasPathService(
+  const resolveSobriquetPathService = new ResolveSobriquetPathService(
     globMatchAdapter,
     globFSAdapter,
     inferPathsVariablesService
@@ -42,33 +41,33 @@ export default (options: GaliasPluginOptions): Plugin => {
 
   const resolveConfigurationUsecase = new ResolveConfigurationUsecase();
 
-  const computeGaliasesUsecase = new ComputeGaliasesUsecase(
+  const computeSobriquetsUsecase = new ComputeSobriquetsUsecase(
     pathAdapter,
-    resolveGaliasPathService
+    resolveSobriquetPathService
   );
 
-  const consumeGaliasesUsecase = new ConsumeGaliasesUsecase();
+  const consumeSobriquetsUsecase = new ConsumeSobriquetsUsecase();
 
   const message = createMessage(options.logs);
 
-  const runGalias = async ({
-    galiases,
+  const runSobriquet = async ({
+    sobriquets,
     languageConfigurationAdapters,
   }: ResolveConfigurationOutput) => {
-    computedGaliases = await computeGaliasesUsecase.execute({
-      galiases,
+    computedSobriquets = await computeSobriquetsUsecase.execute({
+      sobriquets,
     });
 
-    await consumeGaliasesUsecase.execute({
+    await consumeSobriquetsUsecase.execute({
       languageConfigurationAdapters,
-      paths: computedGaliases,
+      paths: computedSobriquets,
     });
 
-    message('Galiases updated!', 'info');
+    message('Sobriquets updated!', 'info');
   };
 
   return {
-    name: 'vite-plugin-galias',
+    name: 'vite-plugin-sobriquet',
     async configResolved() {
       const mergedOptions: ResolveConfigurationInput = {
         ...defaultPluginOptions,
@@ -78,9 +77,9 @@ export default (options: GaliasPluginOptions): Plugin => {
       const resolvedConfiguration =
         await resolveConfigurationUsecase.execute(mergedOptions);
 
-      const galiasesOptions = Object.values(resolvedConfiguration.galiases);
+      const sobriquetsOptions = Object.values(resolvedConfiguration.sobriquets);
 
-      await runGalias(resolvedConfiguration);
+      await runSobriquet(resolvedConfiguration);
 
       const watchAndRunOptions: WatchAndRunOptions[] = [
         {
@@ -88,8 +87,8 @@ export default (options: GaliasPluginOptions): Plugin => {
           watchFile: async (filePath: string) => {
             const path = normalizePath(filePath);
 
-            for (const galiasOptions of galiasesOptions) {
-              const { search, rootDir, exclude } = galiasOptions;
+            for (const sobriquetOptions of sobriquetsOptions) {
+              const { search, rootDir, exclude } = sobriquetOptions;
               const isExcluded = globMatchAdapter.isMatch(path, exclude);
 
               if (isExcluded) {
@@ -98,19 +97,19 @@ export default (options: GaliasPluginOptions): Plugin => {
 
               const searchFullPath = resolve(rootDir, search);
               const normalizedSearchFullPath = normalizePath(searchFullPath);
-              const glob = GaliasPath.globFrom(normalizedSearchFullPath);
+              const glob = SobriquetPath.globFrom(normalizedSearchFullPath);
               const isMatch = globMatchAdapter.isMatch(path, glob);
 
               if (isMatch) {
-                return true;
+                return await Promise.resolve(true);
               }
             }
 
-            return false;
+            return await Promise.resolve(false);
           },
           watchKind: ['add', 'addDir', 'unlink', 'unlinkDir', 'change'],
           async run() {
-            await runGalias(resolvedConfiguration);
+            await runSobriquet(resolvedConfiguration);
           },
         },
       ];
@@ -120,12 +119,12 @@ export default (options: GaliasPluginOptions): Plugin => {
     },
 
     async resolveId(id, importer) {
-      const path = computedGaliases[id];
+      const path = computedSobriquets[id];
 
       if (!path) {
-        message(`Galias "${id}" not found!`, 'error');
+        message(`Sobriquet "${id}" not found!`, 'error');
         message(
-          'Please check your Galias configuration (rootDir, relative paths, ...).',
+          'Please check your Sobriquet configuration (rootDir, relative paths, ...).',
           'warning'
         );
         return;

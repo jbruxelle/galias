@@ -1,13 +1,17 @@
 {
-  "name": "@galias/utils",
+  "name": "@sobriquet/utils",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "build": "unbuild",
     "release": "changelogen --release --push && npm publish",
     "prepack": "pnpm run build",
-    "lint": "eslint --cache && prettier -c .",
-    "lint:fix": "eslint --cache && prettier -c . -w",
+    "lint": "pnpm eslint:check && pnpm prettier:check",
+    "lint:fix": "pnpm eslint:fix && pnpm prettier:fix",
+    "eslint:check": "eslint --cache .",
+    "eslint:fix": "eslint --cache . --fix",
+    "prettier:check": "prettier -c .",
+    "prettier:fix": "prettier -c . --write",
     "test": "pnpm lint && pnpm test:types",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
@@ -36,7 +40,11 @@
     "chalk": "^5.3.0"
   },
   "devDependencies": {
-    "@galias/config": "workspace:*",
+    "@sobriquet/config": "workspace:*",
     "@types/node": "^20.8.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": "@sobriquet/config/prettier"
 }

@@ -1,22 +1,22 @@
-import galias from "@galias/vite";
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import sobriquet from '@sobriquet/vite';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    galias({
+    sobriquet({
       tsconfig: {
-        source: "./tsconfig.base.json",
-        output: "./tsconfig.json",
+        source: './tsconfig.base.json',
+        output: './tsconfig.json',
       },
       jsconfig: {
-        source: "./jsconfig.base.json",
-        output: "./jsconfig.json",
+        source: './jsconfig.base.json',
+        output: './jsconfig.json',
       },
-      rootDir: "./src",
-      galiases: {
-        "{{component}}": "./components/{{component}}/index.tsx",
+      rootDir: './src',
+      sobriquets: {
+        '{{component}}': './components/{{component}}/index.tsx',
       },
     }),
     react(),

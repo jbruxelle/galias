@@ -1,4 +1,4 @@
-import { LanguageConfigurationAdapterOptions } from '../../galias/gateways/language-configuration.adapter';
+import { LanguageConfigurationAdapterOptions } from '../../sobriquet/gateways/language-configuration.adapter';
 import { BaseLanguageConfigurationAdapter } from './base.language.configuration.adapter';
 
 export class JSConfigAdapter extends BaseLanguageConfigurationAdapter {

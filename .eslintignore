@@ -1,5 +1,6 @@
-dist
-node_modules
-.turbo
-coverage
-package.json
+**/dist
+**/node_modules
+**/.turbo
+**/coverage
+**/samples
+**/.template

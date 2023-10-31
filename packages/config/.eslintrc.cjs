@@ -1,8 +1,10 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
   parser: '@typescript-eslint/parser',
+  ignorePatterns: ['dist', 'samples', 'node_modules', '.turbo', 'coverage'],
   extends: [
+    'prettier',
     'standard',
-    'plugin:prettier/recommended',
     'plugin:unicorn/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -48,6 +50,7 @@ module.exports = {
 
     // Disable some unnecessary or conflicting rules
     'no-use-before-define': 'off',
+    'no-useless-constructor': 0,
     'unicorn/prevent-abbreviations': 0,
     'unicorn/no-await-expression-member': 0,
     'unicorn/no-useless-undefined': 0,
