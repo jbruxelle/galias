@@ -1,6 +1,6 @@
 {
   "name": "@sobriquet/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Sobriquet is an alias resolving library using glob patterns",
   "keywords": [
@@ -60,11 +60,11 @@
   },
   "dependencies": {
     "glob": "^10.3.10",
-    "picomatch": "^2.3.1"
+    "picomatch": "^2.3.1",
+    "@sobriquet/config": "workspace:*",
+    "@sobriquet/utils": "workspace:*"
   },
   "devDependencies": {
-    "@sobriquet/config": "workspace:*",
-    "@sobriquet/utils": "workspace:*",
     "@types/node": "^20.8.0",
     "@types/picomatch": "^2.3.1",
     "vite": "^4.4.9"

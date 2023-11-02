@@ -1,5 +1,11 @@
 # @sobriquet/core
 
+## 0.1.1
+
+### Patch Changes
+
+- Fixed sobriquet path building
+
 ## 0.1.0
 
 ### Minor Changes

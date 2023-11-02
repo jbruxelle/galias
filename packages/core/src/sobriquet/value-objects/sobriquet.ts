@@ -33,7 +33,9 @@ export class Sobriquet {
    * @memberof SobriquetPath
    */
   get hasVariables(): boolean {
-    return CONSTANTS.SOBRIQUET_VARIABLE_REGEXP.test(this._value);
+    // Regepx test not always work as expected, while String.match does.
+    // eslint-disable-next-line unicorn/prefer-regexp-test
+    return !!this._value.match(CONSTANTS.SOBRIQUET_VARIABLE_REGEXP);
   }
 
   build(prefix: Prefix, values?: Record<string, string>): string {

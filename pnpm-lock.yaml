@@ -183,7 +183,7 @@ importers:
         specifier: workspace:*
         version: link:../config
       "@types/node":
-        specifier: ^20.8.0
+        specifier: ^20.8.9
         version: 20.8.9
 
 packages:

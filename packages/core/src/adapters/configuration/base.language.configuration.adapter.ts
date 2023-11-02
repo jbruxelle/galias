@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import {
   LanguageConfigurationAdapter,
   LanguageConfigurationAdapterOptions,
@@ -67,7 +68,17 @@ export abstract class BaseLanguageConfigurationAdapter
     computedPaths: Record<string, string>
   ): Record<string, string[]> {
     const entries = Object.entries(computedPaths);
-    const transformedEntries = entries.map(([key, value]) => [key, [value]]);
+    const transformedEntries = entries.map(([key, value]) => {
+      const isDirectory = !path.extname(value);
+      const endsWithSlash = value.endsWith('/');
+
+      if (isDirectory) {
+        const formattedValue = endsWithSlash ? `${value}*` : `${value}/*`;
+        const formattedKey = `${key}/*`;
+        return [formattedKey, [formattedValue]];
+      }
+      return [key, [value]];
+    });
     return Object.fromEntries(transformedEntries);
   }
 
