@@ -1,6 +1,6 @@
 {
   "name": "@sobriquet/utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sobriquet is an alias resolving library using glob patterns. This is the utils package for Sobriquet.",
   "keywords": [
     "alias",
@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@sobriquet/config": "workspace:*",
-    "@types/node": "^20.8.0"
+    "@types/node": "^20.8.9"
   },
   "publishConfig": {
     "access": "public"

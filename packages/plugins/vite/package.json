@@ -1,6 +1,6 @@
 {
   "name": "@sobriquet/vite",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sobriquet is an alias resolving library using glob patterns. This is the vite plugin package for Sobriquet.",
   "keywords": [
     "alias",

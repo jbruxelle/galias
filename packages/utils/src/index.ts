@@ -1,3 +1,3 @@
 export { createMessage } from './message';
-export * from './bundler';
+export * from './vite';
 export * from './types';

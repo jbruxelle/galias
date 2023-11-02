@@ -5,7 +5,7 @@ import watchAndRun, {
   Options as WatchAndRunOptions,
 } from 'vite-plugin-watch-and-run';
 
-import { createMessage } from '@sobriquet/utils';
+import { createMessage, isViteConfig } from '@sobriquet/utils';
 
 import {
   ComputeSobriquetsUsecase,
@@ -86,6 +86,10 @@ export default (options: SobriquetPluginOptions): Plugin => {
           logs: [],
           watchFile: async (filePath: string) => {
             const path = normalizePath(filePath);
+
+            if (isViteConfig(path)) {
+              return await Promise.resolve(true);
+            }
 
             for (const sobriquetOptions of sobriquetsOptions) {
               const { search, rootDir, exclude } = sobriquetOptions;

@@ -1,5 +1,13 @@
 # @sobriquet/vite
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @sobriquet/utils@0.1.1
+  - @sobriquet/core@0.1.0
+
 ## 0.1.0
 
 ### Minor Changes
