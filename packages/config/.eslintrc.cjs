@@ -83,6 +83,16 @@ module.exports = {
       },
     ],
 
+    // Allow unused vars with underscore, otherwise warn
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+
     // No single if in an "else" block
     'no-lonely-if': 'error',
 
