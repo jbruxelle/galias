@@ -3,12 +3,55 @@
     "module": "commonjs",
     "target": "es6",
     "paths": {
+      "#todos/list": [
+        "./src/todos/core/application/usecases/list/list.usecase.ts"
+      ],
+      "#todos/create": [
+        "./src/todos/core/application/usecases/create/create.usecase.ts"
+      ],
+      "#authentication/login": [
+        "./src/authentication/core/application/usecases/login/login.usecase.ts"
+      ],
+      "#todos/list/output": [
+        "./src/todos/core/application/boundaries/list/list.output.ts"
+      ],
+      "#todos/list/input": [
+        "./src/todos/core/application/boundaries/list/list.input.ts"
+      ],
+      "#todos/create/output": [
+        "./src/todos/core/application/boundaries/create/create.output.ts"
+      ],
+      "#todos/create/input": [
+        "./src/todos/core/application/boundaries/create/create.input.ts"
+      ],
+      "#authentication/login/response-model": [
+        "./src/authentication/core/application/boundaries/login/login.response-model.ts"
+      ],
+      "#authentication/login/request-model": [
+        "./src/authentication/core/application/boundaries/login/login.request-model.ts"
+      ],
+      "#authentication/gateways/authentication": [
+        "./src/authentication/core/application/gateways/authentication.gateway.ts"
+      ],
       "$some-component": ["./src/components/some-component/index.tsx"],
       "$logotype": ["./src/components/logotype/index.tsx"],
       "$header": ["./src/components/header/index.tsx"],
       "$footer": ["./src/components/footer/index.tsx"],
       "$counter": ["./src/components/counter/index.tsx"],
-      "$card": ["./src/components/card/index.tsx"]
+      "$card": ["./src/components/card/index.tsx"],
+      "#shared/*": ["./src/shared/*"],
+      "#shared/exceptions/invalid-id": [
+        "./src/shared/exceptions/invalid-id.exception.ts"
+      ],
+      "#todos/exceptions/invalid-name": [
+        "./src/todos/core/domain/exceptions/invalid-name.exception.ts"
+      ],
+      "#todos/exceptions/invalid-id": [
+        "./src/todos/core/domain/exceptions/invalid-id.exception.ts"
+      ],
+      "#authentication/exceptions/invalid-name": [
+        "./src/authentication/core/domain/exceptions/invalid-name.exception.ts"
+      ]
     }
   },
   "exclude": ["node_modules"]

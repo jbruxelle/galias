@@ -10,7 +10,8 @@
     "eslint:check": "eslint --cache . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "eslint:fix": "eslint --cache . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "prettier:check": "prettier -c .",
-    "prettier:fix": "prettier -c . --write"
+    "prettier:fix": "prettier -c . --write",
+    "test:types": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "react": "^18.2.0",
