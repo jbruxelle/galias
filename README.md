@@ -13,19 +13,20 @@ Next steps:
 - [ ] Add documentation
 - [ ] Add examples
 - [ ] Add support for other bundlers (unplugin ?)
+- [ ] Use Chodikar for all (currently using [vite-plugin-watch-and-run](https://github.com/jycouet/kitql/tree/main/packages/vite-plugin-watch-and-run) ([link to npm](https://www.npmjs.com/package/vite-plugin-watch-and-run)))
 
 ## Installation
 
 ```bash
-npm i -D vite-plugin-sobriquet
+npm i -D @sobriquet/vite
 ```
 
 ```bash
-yarn add -d vite-plugin-sobriquet
+yarn add -d @sobriquet/vite
 ```
 
 ```bash
-pnpm i -D vite-plugin-sobriquet
+pnpm i -D @sobriquet/vite
 ```
 
 ## Usage
@@ -35,37 +36,44 @@ pnpm i -D vite-plugin-sobriquet
 ```ts
 // vite.config.ts
 import { defineConfig } from "vite";
-import sobriquet from "vite-plugin-sobriquet";
-import {
-  TSConfigAdapter /** JSConfigAdapter */,
-} from "vite-plugin-sobriquet/adapters";
+import sobriquet from "@sobriquet/vite";
 
 export default defineConfig({
   plugins: [
     sobriquet({
-      adapters: [
-        new TSConfigAdapter({
-          source: "tsconfig.base.json",
-          output: "tsconfig.json",
-        }),
-      ],
+      tsconfig: {
+        source: "./tsconfig.base.json",
+        output: "./tsconfig.json",
+      },
+      //   jsconfig: {
+      //     source: './jsconfig.base.json',
+      //     output: './jsconfig.json',
+      //   },
       rootDir: "./src",
       prefix: "#",
       exclude: ["**/*.test.ts"],
       sobriquetes: {
-        "my-alias": "some/folder/file.ts",
+        "my-sobriquet": "some/folder/file.ts",
+
         "{{component}}": "components/{{component}}/index.{tsx,jsx}",
+
         "{{domain}}/{{usecase}}": {
           search: "{{domain}}/**/usecases/{{usecase}}/{{usecase}}.usecase.ts",
           exclude: ["**/*.spec.ts"],
         },
+
         "{{domain}}/{{usecase}}/{{boundary}}": {
           search: "{{domain}}/**/boundaries/{{usecase}}/*.{{boundary}}.ts",
           prefix: "$",
           exclude: ["**/create/*.ts"],
+          // rootDir: 'your-rootDir-for-this-sobriquet'
         },
       },
     }),
   ],
 });
 ```
+
+## Authors
+
+- [@jbruxelle](https://github.com/jbruxelle/)
